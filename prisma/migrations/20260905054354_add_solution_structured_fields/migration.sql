@@ -1,0 +1,15 @@
+-- AlterTable
+ALTER TABLE "Solution" ADD COLUMN     "audience" JSONB,
+ADD COLUMN     "audienceDescription" TEXT,
+ADD COLUMN     "badge" TEXT,
+ADD COLUMN     "benefits" JSONB,
+ADD COLUMN     "ctaDescription" TEXT,
+ADD COLUMN     "ctaTitle" TEXT,
+ADD COLUMN     "features" JSONB,
+ADD COLUMN     "heroCta" TEXT,
+ADD COLUMN     "highlights" JSONB,
+ADD COLUMN     "problemDescription" TEXT,
+ADD COLUMN     "problemTitle" TEXT,
+ADD COLUMN     "stage" TEXT,
+ADD COLUMN     "subtitle" TEXT,
+ADD COLUMN     "targetAudience" TEXT;

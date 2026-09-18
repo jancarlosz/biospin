@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id             String    @id @default(cuid())
+  title          String
+  slug           String    @unique
+  excerpt        String?
+  content        String
+  coverImageUrl  String?
+  coverImageKey  String?
+  status         Status    @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  categoryId     String
+  category       Category  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([categoryId])
+}
+
+model Solution {
+  id             String    @id @default(cuid())
+  name           String
+  slug           String    @unique
+  summary        String
+  content        String
+  imageUrl       String?
+  imageKey       String?
+  status         Status    @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Campos Estruturados para Layout Premium (opcionais)
+  badge              String?
+  subtitle           String?
+  heroCta            String?
+  stage              String?
+  targetAudience     String?
+  problemTitle       String?
+  problemDescription String?
+  highlights         Json?
+  features           Json?
+  benefits           Json?
+  audience           Json?
+  audienceDescription String?
+  ctaTitle           String?
+  ctaDescription     String?
+
+  @@index([status])
+}

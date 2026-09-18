@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: biospin_postgres
+    environment:
+      POSTGRES_USER: biospin
+      POSTGRES_PASSWORD: biospinpassword
+      POSTGRES_DB: biospin
+    ports:
+      - "5440:5432"
+    volumes:
+      - biospin_pgdata3:/var/lib/postgresql/data
+
+volumes:
+  biospin_pgdata3:
