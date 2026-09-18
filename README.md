@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BioSpin — Plataforma Institucional e Tecnológica
 
-## Getting Started
+Plataforma web institucional completa da **BioSpin**, uma deeptech amazonense pioneira na convergência entre nanotecnologia avançada, biomateriais inovadores e bioativos da biodiversidade amazônica para saúde humana e dermatologia.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔬 Sobre a BioSpin
+
+A **BioSpin** desenvolve soluções de alto impacto baseadas em nanobiotecnologia sustentável com foco na floresta em pé:
+
+- **Nanofiberdressing:** Curativo nanofibrilar com liberação controlada de bioativos amazônicos (copaíba, pracaxi e castanha) para tratamento e cicatrização acelerada de feridas crônicas (ex: pé diabético e úlceras de pressão). Maturidade tecnológica **TRL 5** com validação clínica em andamento.
+- **OncoMatrix:** Membrana nanofibrilar bioabsorvível em estágio de desenvolvimento para suporte estrutural e regeneração tecidual após procedimentos cirúrgicos e oncológicos, projetada para futura incorporação ao SUS.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Core & Framework:** [Next.js](https://nextjs.org/) (App Router, Server Components & Server Actions)
+- **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
+- **Estilização:** [Tailwind CSS](https://tailwindcss.com/) com design system sob medida, efeitos visuais avançados, microinterações e glassmorphism
+- **Banco de Dados & ORM:** [PostgreSQL](https://www.postgresql.org/) com [Prisma ORM](https://www.prisma.io/)
+- **Autenticação:** [NextAuth.js v5](https://next-auth.js.org/) com hash de senhas via Bcrypt
+- **Upload de Arquivos:** [UploadThing](https://uploadthing.com/) com suporte a CDN
+- **Editor de Conteúdo:** [TipTap](https://tiptap.dev/) (Rich Text Editor moderno e intuitivo)
+- **Mensageria & Notificações:** [Resend](https://resend.com/) com React Email e [Sonner](https://sonner.emilkowal.ski/)
+- **Ícones & Componentes UI:** [Lucide React](https://lucide.dev/) & [Radix UI](https://www.radix-ui.com/)
+
+---
+
+## 📂 Estrutura do Projeto
+
+```text
+src/
+├── app/
+│   ├── (public)/                 # Área pública institucional
+│   │   ├── page.tsx              # Home institucional
+│   │   ├── sobre/                # Quem somos, história e liderança
+│   │   ├── solucoes/             # Catálogo e páginas dedicadas das soluções
+│   │   ├── blog/                 # Blog com categorias e posts individuais
+│   │   ├── contato/              # Formulários de contato e parcerias
+│   │   ├── privacidade/          # Política de privacidade
+│   │   └── termos/               # Termos de uso
+│   ├── admin/                    # Painel administrativo protegido
+│   │   ├── login/                # Autenticação de administradores
+│   │   └── (protected)/
+│   │       ├── posts/            # Gestão e publicação de matérias do blog
+│   │       ├── categorias/       # Gestão de categorias do blog
+│   │       └── solucoes/         # Gestão do catálogo de soluções
+│   └── api/                      # Rotas de API (Auth, Upload, Contato)
+├── components/
+│   ├── admin/                    # Componentes do painel CMS
+│   ├── public/                   # Navbar, Rodapé, Modais e Componentes Públicos
+│   └── ui/                       # Primitivos de interface e design system
+├── lib/                          # Configurações de banco (Prisma), autenticação e utilitários
+└── proxy.ts                      # Proxy / Middleware de proteção
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Instalação e Execução Local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Pré-requisitos
+- **Node.js:** versão 18.18+ ou 20+
+- **PostgreSQL:** banco de dados local ou remoto rodando
 
-## Learn More
+### 2. Clonar o repositório
+```bash
+git clone https://github.com/jancarlosz/biospin.git
+cd biospin
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Instalar dependências
+```bash
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Configurar variáveis de ambiente
+Crie um arquivo `.env` na raiz do projeto com base no `.env.example`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+# Banco de Dados
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/biospin"
 
-## Deploy on Vercel
+# Autenticação NextAuth
+AUTH_SECRET="sua-chave-secreta-super-segura"
+NEXTAUTH_URL="http://localhost:3000"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# UploadThing
+UPLOADTHING_SECRET="sua_chave_uploadthing"
+UPLOADTHING_APP_ID="seu_app_id"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Resend (E-mails)
+RESEND_API_KEY="re_sua_chave_resend"
+CONTACT_EMAIL_TO="contato@biospin.com.br"
+```
+
+### 5. Executar Migrações e Seed do Banco
+```bash
+npx prisma migrate dev
+npm run seed
+```
+
+> **Credenciais padrão geradas pelo seed:**
+> - **E-mail:** `admin@biospin.com.br`
+> - **Senha:** `BioSpin@2026!`
+
+### 6. Iniciar o servidor de desenvolvimento
+```bash
+npm run dev
+```
+
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
+
+---
+
+## 🔒 Painel Administrativo
+
+Acesse [http://localhost:3000/admin/login](http://localhost:3000/admin/login) para gerenciar:
+- Publicação de novos artigos com upload de capa e editor formatado
+- Categorias de conteúdo
+- Catálogo de tecnologias e soluções
+
+---
+
+## 📄 Licença
+
+Propriedade intelectual de **BioSpin Deeptech**. Todos os direitos reservados.
