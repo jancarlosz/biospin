@@ -48,7 +48,7 @@ export function Footer() {
                 <FaLinkedinIn className="h-5 w-5" />
               </a>
               <a
-                href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
+                href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp da BioSpin"
@@ -101,14 +101,16 @@ export function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span>+55 (92) 99999-9999</span>
+                <a href="tel:+5548988401508" className="hover:text-white transition-colors">
+                  +55 (48) 98840-1508
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white shrink-0">
                   <FaWhatsapp className="h-4 w-4" />
                 </div>
                 <a
-                  href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
+                  href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-white/80 hover:underline font-medium transition-colors"

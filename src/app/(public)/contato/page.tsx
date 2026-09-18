@@ -59,7 +59,7 @@ export default function ContatoPage() {
                   </div>
                 </div>
                 <a
-                  href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
+                  href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full shadow-sm transition-colors whitespace-nowrap"
@@ -90,7 +90,12 @@ export default function ContatoPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground text-base">Telefone</h3>
-                    <p className="text-foreground/70 text-sm">+55 (92) 99999-9999</p>
+                    <a
+                      href="tel:+5548988401508"
+                      className="text-foreground/70 hover:text-primary transition-colors text-sm"
+                    >
+                      +55 (48) 98840-1508
+                    </a>
                   </div>
                 </div>
 

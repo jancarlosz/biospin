@@ -97,7 +97,7 @@ export function Navbar() {
           {/* Actions */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20BioSpin%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+              href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20BioSpin%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Falar no WhatsApp"
@@ -127,7 +127,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
             <a
-              href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20BioSpin%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+              href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20BioSpin%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Falar no WhatsApp"
