@@ -64,22 +64,43 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Credenciais e Validação */}
-      <section className="py-12 bg-white rounded-t-[3rem] -mt-8 relative z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-10 md:gap-20 items-center text-foreground/60 text-sm font-medium text-center">
-            <div className="flex flex-col items-center">
-              <span className="font-bold text-foreground text-base mb-1">Hackathon SUS</span>
-              <span>Desafio 2 (OncoMatrix)</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="font-bold text-foreground text-base mb-1">Sebrae Nacional</span>
-              <span>Programa Catalisa ICT</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="font-bold text-foreground text-base mb-1">Parceria Científica</span>
-              <span>Desenvolvido com LTMN/INPA e UFAM</span>
-            </div>
+      {/* Credenciais e Validação - Slideshow de Logos */}
+      <section className="py-14 bg-white rounded-t-[3rem] -mt-8 relative z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)] overflow-hidden border-b border-foreground/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40">
+            Parcerias científicas, fomento e validação institucional
+          </p>
+        </div>
+
+        {/* Marquee Wrapper com Efeito de Fade nas Laterais */}
+        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+          <div className="animate-marquee items-center gap-16 md:gap-24 py-2">
+            {[
+              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
+              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
+              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
+              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
+              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
+              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
+            ].map((partner, idx) => (
+              <div key={idx} className="flex items-center gap-4 shrink-0 group cursor-default">
+                <div className="relative h-12 w-28 md:h-14 md:w-36 flex items-center justify-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                  <Image
+                    src={partner.src}
+                    alt={partner.alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="hidden sm:flex flex-col text-left">
+                  <span className="font-bold text-foreground text-sm leading-tight">{partner.name}</span>
+                  <span className="text-xs text-foreground/50">{partner.sub}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
