@@ -77,12 +77,15 @@ export default async function HomePage() {
           <div className="animate-marquee items-center gap-16 md:gap-24 py-2">
             {[
               { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
               { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
               { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
               { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
               { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
               { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
               { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
+              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
               { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
               { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
             ].map((partner, idx) => (
