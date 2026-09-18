@@ -4,30 +4,37 @@ import { db } from '@/lib/db';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://biospin.com.br';
 
-  const [posts, solutions] = await Promise.all([
-    db.post.findMany({
-      where: { status: 'PUBLISHED' },
-      select: { slug: true, updatedAt: true },
-    }),
-    db.solution.findMany({
-      where: { status: 'PUBLISHED' },
-      select: { slug: true, updatedAt: true },
-    }),
-  ]);
+  let postUrls: { url: string; lastModified: Date; changeFrequency: 'weekly'; priority: number }[] = [];
+  let solutionUrls: { url: string; lastModified: Date; changeFrequency: 'monthly'; priority: number }[] = [];
 
-  const postUrls = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
+  try {
+    const [posts, solutions] = await Promise.all([
+      db.post.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { slug: true, updatedAt: true },
+      }),
+      db.solution.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { slug: true, updatedAt: true },
+      }),
+    ]);
 
-  const solutionUrls = solutions.map((solution) => ({
-    url: `${baseUrl}/solucoes/${solution.slug}`,
-    lastModified: solution.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+    postUrls = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }));
+
+    solutionUrls = solutions.map((solution) => ({
+      url: `${baseUrl}/solucoes/${solution.slug}`,
+      lastModified: solution.updatedAt,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }));
+  } catch (err) {
+    console.warn('⚠️ Could not fetch dynamic paths for sitemap during build:', err);
+  }
 
   return [
     {
