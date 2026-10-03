@@ -69,7 +69,7 @@ export default function OncoMatrixPage() {
                 </div>
                 <h2 className="text-3xl font-bold font-heading text-primary mb-6">O Problema</h2>
                 <p className="text-foreground/70 font-light leading-relaxed text-lg">
-                  Cirurgias oncológicas que envolvem remoção de tecido frequentemente exigem soluções de reconstrução — nem sempre acessíveis ou adaptadas à realidade do sistema público de saúde brasileiro. As opções disponíveis no mercado geralmente possuem alto custo, dificultando a incorporação em larga escala.
+                  Cirurgias oncológicas que envolvem remoção de tecido frequentemente exigem soluções de reconstrução nem sempre acessíveis ou adaptadas à realidade do sistema público de saúde brasileiro. As opções disponíveis no mercado geralmente possuem alto custo, dificultando a incorporação em larga escala.
                 </p>
               </SpotlightCard>
             </div>
@@ -87,9 +87,7 @@ export default function OncoMatrixPage() {
                   <li className="flex items-start gap-4 text-primary-foreground/80 font-light">
                     <CheckCircle2 className="h-6 w-6 text-cyan-300 shrink-0" /> Estrutura nanofibrilar bioabsorvível, sem necessidade de remoção cirúrgica posterior
                   </li>
-                  <li className="flex items-start gap-4 text-primary-foreground/80 font-light">
-                    <CheckCircle2 className="h-6 w-6 text-cyan-300 shrink-0" /> Desenvolvido a partir da mesma plataforma de nanotecnologia do Nanofiberdressing
-                  </li>
+
                   <li className="flex items-start gap-4 text-primary-foreground/80 font-light">
                     <CheckCircle2 className="h-6 w-6 text-cyan-300 shrink-0" /> Pensado para se conectar aos fluxos de incorporação de tecnologia do SUS
                   </li>
@@ -109,7 +107,7 @@ export default function OncoMatrixPage() {
               <span className="font-light">Origem e</span> <span className="font-bold text-secondary">Validação</span>
             </h2>
             <p className="text-xl text-foreground/70 font-light leading-relaxed">
-              O OncoMatrix nasceu como resposta ao Desafio 2 do Hackathon SUS, um dos principais programas de inovação aberta em saúde pública do país. O projeto segue em desenvolvimento técnico-científico.
+              O OncoMatrix nasceu como resposta ao Desafio 2 do Hackathon SUS, um dos principais programas de inovação aberta em saúde pública do país. O projeto avança em sua etapa de desenvolvimento técnico-científico, com estudos in vitro atualmente em condução por um laboratório associado à rede REBLAS.
             </p>
           </div>
           
@@ -121,13 +119,7 @@ export default function OncoMatrixPage() {
               </SpotlightCard>
             </div>
             
-            <div className="reveal-on-scroll reveal-delay-200">
-              <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 flex flex-col items-center text-center transition-all duration-300">
-                <ShieldPlus className="h-10 w-10 text-secondary mb-4" />
-                <p className="text-foreground font-medium text-lg leading-snug">Desenvolvido com base científica do LTMN/INPA</p>
-              </SpotlightCard>
-            </div>
-            
+
             <div className="reveal-on-scroll reveal-delay-300">
               <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 flex flex-col items-center text-center transition-all duration-300">
                 <ShieldPlus className="h-10 w-10 text-secondary mb-4" />

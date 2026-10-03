@@ -227,7 +227,7 @@ Subtítulo: Membrana nanofibrilar bioabsorvível desenvolvida para apoiar a reco
 oncológicas, unindo ciência de materiais e as necessidades reais do SUS.
 CTA → Quero saber mais / Falar com a equipe
 7.2 O problema
-Cirurgias oncológicas que envolvem remoção de tecido frequentemente exigem soluções de reconstrução — nem
+Cirurgias oncológicas que envolvem remoção de tecido frequentemente exigem soluções de reconstrução nem
 sempre acessíveis ou adaptadas à realidade do sistema público de saúde brasileiro.
 7.3 A solução
 O OncoMatrix é uma membrana nanofibrilar bioabsorvível. Um biomaterial que serve de suporte estrutural
