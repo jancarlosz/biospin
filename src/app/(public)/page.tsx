@@ -64,47 +64,104 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Credenciais e Validação - Slideshow de Logos */}
-      <section className="py-14 bg-white rounded-t-[3rem] -mt-8 relative z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)] overflow-hidden border-b border-foreground/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40">
+      {/* Credenciais e Validação */}
+      <section className="py-20 bg-white rounded-t-[3rem] -mt-8 relative z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)] overflow-hidden border-b border-foreground/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 mb-2">
             Parcerias científicas, fomento e validação institucional
           </p>
+          <h2 className="text-3xl md:text-4xl font-heading text-primary font-bold">Ecossistema de Inovação</h2>
         </div>
 
-        {/* Marquee Wrapper com Efeito de Fade nas Laterais */}
-        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
-          <div className="animate-marquee items-center gap-16 md:gap-24 py-2">
+        {/* Marquee: Apoio e Articulações Inline */}
+        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] mb-16 mt-6">
+          <div className="animate-marquee flex items-center gap-10 md:gap-16 py-4 whitespace-nowrap">
             {[
-              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
-              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
-              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
-              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
-              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
-              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
-              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
-              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
-              { src: "/sebrae.png", alt: "Sebrae Nacional", name: "Sebrae Nacional", sub: "Programa Catalisa ICT" },
-              { src: "/aspacs.png", alt: "ASPACS", name: "ASPACS", sub: "Comunidades Extrativistas" },
-              { src: "/inpa.png", alt: "INPA - Instituto Nacional de Pesquisas da Amazônia", name: "INPA", sub: "LTMN / Pesquisa" },
-              { src: "/ufam.png", alt: "UFAM - Universidade Federal do Amazonas", name: "UFAM", sub: "Parceria Científica" },
-            ].map((partner, idx) => (
-              <div key={idx} className="flex items-center gap-4 shrink-0 group cursor-default">
-                <div className="relative h-12 w-28 md:h-14 md:w-36 flex items-center justify-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                  <Image
-                    src={partner.src}
-                    alt={partner.alt}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <div className="hidden sm:flex flex-col text-left">
-                  <span className="font-bold text-foreground text-sm leading-tight">{partner.name}</span>
-                  <span className="text-xs text-foreground/50">{partner.sub}</span>
-                </div>
+              { type: "text", text: "APOIO:" },
+              { src: "/certi.png", alt: "CERTI" },
+              { src: "/catalisa.png", alt: "Catalisa ICT" },
+              { src: "/venture hub.png", alt: "Venture Hub" },
+              { src: "/inpa.png", alt: "INPA" },
+              { src: "/logo-biospin-horizontal.png", alt: "BioSpin" },
+              { type: "text", text: "ARTICULAÇÕES:" },
+              { src: "/reblas.png", alt: "REBLAS" },
+              { src: "/cba.png", alt: "CBA" },
+              { src: "/swissnex.png", alt: "Swissnex" },
+              // Repetido para scroll infinito
+              { type: "text", text: "APOIO:" },
+              { src: "/certi.png", alt: "CERTI" },
+              { src: "/catalisa.png", alt: "Catalisa ICT" },
+              { src: "/venture hub.png", alt: "Venture Hub" },
+              { src: "/inpa.png", alt: "INPA" },
+              { src: "/logo-biospin-horizontal.png", alt: "BioSpin" },
+              { type: "text", text: "ARTICULAÇÕES:" },
+              { src: "/reblas.png", alt: "REBLAS" },
+              { src: "/cba.png", alt: "CBA" },
+              { src: "/swissnex.png", alt: "Swissnex" },
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center shrink-0 cursor-default">
+                 {item.type === "text" ? (
+                   <span className="text-sm md:text-base font-bold text-primary uppercase tracking-[0.2em] px-4">{item.text}</span>
+                 ) : (
+                   <div className="relative h-12 w-28 md:h-14 md:w-36 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                     <Image src={item.src!} alt={item.alt!} fill className="object-contain" />
+                   </div>
+                 )}
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Premiações e Destaques (Grid, Sem Carrossel) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 border-t border-foreground/5">
+           <h3 className="text-sm font-semibold text-foreground/50 uppercase tracking-widest text-center mb-10">Reconhecimentos & Premiações</h3>
+           
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              {/* Card 1: PEGN */}
+              <div className="bg-[#f96901] rounded-[1.8rem] p-6 text-white flex flex-col justify-between items-center text-center overflow-hidden group shadow-md hover:shadow-xl transition-all h-64">
+                <div className="flex-1 flex flex-col items-center justify-center gap-2">
+                  <h4 className="font-bold text-sm opacity-90 uppercase tracking-wider mb-2">Destaque na Mídia</h4>
+                  <div className="relative h-16 w-32 md:h-20 md:w-40 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <Image src="/p-e-g-n.png" alt="Pequenas Empresas e Grandes Negócios" fill className="object-contain drop-shadow-md" />
+                  </div>
+                </div>
+                <p className="text-xs font-medium opacity-90 bg-white/20 px-4 py-1.5 rounded-full mt-2 backdrop-blur-sm">Edições Mai/Out 2026</p>
+              </div>
+
+              {/* Card 2: Top 1000 Sebrae */}
+              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
+                <Image src="/Top 1000 Sebrae Startups_BioSpin.jpeg" alt="Top 1000 Sebrae Startups" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/20 to-transparent flex flex-col justify-end p-5">
+                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 1000 Startups</h4>
+                  <p className="text-white/70 text-xs font-medium whitespace-normal">Prêmio Sebrae Startups 2026</p>
+                </div>
+              </div>
+
+              {/* Card 3: Hackathon SUS */}
+              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group flex items-center justify-center bg-primary/5">
+                <Image src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Hackathon SUS" fill className="object-cover opacity-50 grayscale transition-transform duration-700 group-hover:scale-105 mix-blend-multiply" />
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <span className="bg-white/95 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-white/20">Aguardando Imagem</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/20 to-transparent flex flex-col justify-end p-5 z-20">
+                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Finalista Hackathon SUS</h4>
+                  <p className="text-white/70 text-xs font-medium whitespace-normal">Inovação Aberta em Saúde Pública</p>
+                </div>
+              </div>
+
+              {/* Card 4: Jaraqui Valley */}
+              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center p-8">
+                <div className="relative w-full h-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
+                  <Image src="/jaraqui.png" alt="Top 3 Jaraqui Valley" fill className="object-contain" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/10 to-transparent flex flex-col justify-end p-5">
+                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 3 Startups</h4>
+                  <p className="text-white/70 text-xs font-medium whitespace-normal">Jaraqui Valley</p>
+                </div>
+              </div>
+
+           </div>
         </div>
       </section>
 
@@ -127,7 +184,7 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {solutions.length > 0 ? (
-              solutions.map((solution, idx) => {
+              solutions.filter(s => s.slug !== 'oncomatrix').map((solution, idx) => {
                 const defaultImages: Record<string, string> = {
                   nanofiberdressing: "https://images.unsplash.com/photo-1583324113626-70df0f4deaab?w=800&q=80",
                   oncomatrix: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
@@ -206,39 +263,6 @@ export default async function HomePage() {
                     </Link>
                   </SpotlightCard>
                 </div>
-
-                {/* Card 2 — OncoMatrix (PROJECT-SPEC 3.3) */}
-                <div className="reveal-on-scroll reveal-delay-200">
-                  <SpotlightCard className="h-full bg-background rounded-[2rem] p-6 border border-foreground/5 hover:border-primary/20 transition-all duration-300">
-                    <Link
-                      href="/solucoes/oncomatrix"
-                      className="group block h-full flex flex-col"
-                    >
-                      <div className="relative aspect-[16/9] rounded-[1.5rem] overflow-hidden mb-6 bg-white">
-                        <Image
-                          src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80"
-                          alt="OncoMatrix"
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <span className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md text-xs font-bold text-primary rounded-full shadow-sm">
-                          Em desenvolvimento · Hackathon SUS
-                        </span>
-                      </div>
-                      <div className="px-2 pb-2 flex-1 flex flex-col">
-                        <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-                          OncoMatrix
-                        </h3>
-                        <p className="text-foreground/60 leading-relaxed font-light text-base mb-4 flex-1">
-                          Membrana nanofibrilar bioabsorvível para reconstrução de tecidos em cirurgias oncológicas — biomaterial médico desenvolvido a partir do Hackathon SUS.
-                        </p>
-                        <span className="text-primary font-medium inline-flex items-center text-sm group-hover:underline mt-auto">
-                          Conhecer OncoMatrix <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </Link>
-                  </SpotlightCard>
-                </div>
               </>
             )}
           </div>
@@ -279,7 +303,7 @@ export default async function HomePage() {
                   Curativos e biomateriais para tratamento de feridas complexas e reconstrução tecidual.
                 </p>
                 <Link href="/solucoes" className="font-medium hover:text-secondary inline-flex items-center transition-colors group mt-auto">
-                  Ver Nanofiberdressing e OncoMatrix <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Ver Nanofiberdressing <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </SpotlightCard>
             </div>
@@ -344,7 +368,7 @@ export default async function HomePage() {
             <div className="reveal-on-scroll reveal-delay-300">
               <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
                 <ShieldCheck className="h-10 w-10 text-secondary mb-6" />
-                <p className="text-foreground font-semibold text-lg leading-snug">Ciência validada por instituições como LTMN/INPA e UFAM</p>
+                <p className="text-foreground font-semibold text-lg leading-snug">Ciência validada por instituições e parcerias estratégicas</p>
               </SpotlightCard>
             </div>
 
