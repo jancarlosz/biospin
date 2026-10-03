@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
 export const metadata = {
   title: "Soluções BioSpin | Biomateriais e Cosméticos",
   description:
-    "Conheça o portfólio da BioSpin: Nanofiberdressing, OncoMatrix e a linha cosmética com bioativos amazônicos encapsulados em nanotecnologia própria.",
+    "Conheça o portfólio da BioSpin: Nanofiberdressing e a linha cosmética com bioativos amazônicos encapsulados em nanotecnologia própria.",
 };
 
 export default async function SolucoesPage() {
@@ -36,19 +36,6 @@ export default async function SolucoesPage() {
       image:
         dbSolutions.find((s) => s.slug === "nanofiberdressing")?.imageUrl ||
         "https://images.unsplash.com/photo-1583324113626-70df0f4deaab?w=800&q=80",
-    },
-    {
-      id: "oncomatrix",
-      slug: "oncomatrix",
-      name: "OncoMatrix",
-      stage: "Em desenvolvimento — Hackathon SUS",
-      audience: "Hospitais, SUS, parceiros de P&D",
-      summary:
-        "Membrana nanofibrilar bioabsorvível para reconstrução de tecidos em cirurgias oncológicas — biomaterial médico desenvolvido a partir do Hackathon SUS.",
-      icon: <ShieldPlus className="h-12 w-12 text-primary" />,
-      image:
-        dbSolutions.find((s) => s.slug === "oncomatrix")?.imageUrl ||
-        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
     },
   ];
 
@@ -80,7 +67,7 @@ export default async function SolucoesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Âncoras do Projeto (Nanofiberdressing e OncoMatrix) */}
+            {/* Âncoras do Projeto (Nanofiberdressing) */}
             {anchorSolutions.map((solution, idx) => (
               <div key={solution.id} className={`reveal-on-scroll ${idx === 1 ? 'reveal-delay-200' : ''}`}>
                 <SpotlightCard className="h-full bg-background rounded-[3rem] p-6 transition-all duration-300 border border-foreground/5 hover:border-primary/20 flex flex-col">

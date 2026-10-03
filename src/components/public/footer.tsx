@@ -75,7 +75,6 @@ export function Footer() {
             <h3 className="text-white font-bold mb-6 tracking-wider text-sm uppercase">Soluções</h3>
             <ul className="space-y-4 text-base font-light text-white/70">
               <li><Link href="/solucoes/nanofiberdressing" className="hover:text-white transition-colors">Nanofiberdressing</Link></li>
-              <li><Link href="/solucoes/oncomatrix" className="hover:text-white transition-colors">OncoMatrix</Link></li>
               <li><Link href="/solucoes" className="hover:text-white transition-colors">Ver todas as tecnologias</Link></li>
             </ul>
           </div>
