@@ -193,7 +193,7 @@ export default function SobrePage() {
               </h2>
               
               <p className="text-foreground/75 leading-relaxed text-lg font-light mb-8">
-                A BioSpin trabalha com repartição ética de benefícios com fornecedores de bioativos amazônicos, como a comunidade extrativista ASPACS, garantindo que a cadeia produtiva remunere de forma justa quem cultiva e coleta a matéria-prima na floresta.
+                A BioSpin trabalha com repartição ética de benefícios com fornecedores de bioativos amazônicos, garantindo que a cadeia produtiva remunere de forma justa quem cultiva e coleta a matéria-prima na floresta.
               </p>
 
               <div className="space-y-3 mb-10">
@@ -285,43 +285,6 @@ export default function SobrePage() {
                     <p className="text-xs text-foreground/60 font-light leading-relaxed">
                       Fomento e suporte a deep techs de bioeconomia na Amazônia.
                     </p>
-                  </div>
-
-                  {/* LTMN / INPA */}
-                  <div className="p-5 rounded-2xl bg-background/60 hover:bg-white border border-border/80 hover:border-primary/30 transition-all hover:shadow-md group">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-bold text-foreground text-base group-hover:text-primary transition-colors">
-                        LTMN / INPA
-                      </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary border border-secondary/20">
-                        P&D Científico
-                      </span>
-                    </div>
-                    <p className="text-xs text-foreground/60 font-light leading-relaxed">
-                      Pesquisa e caracterização contínua de nanomateriais.
-                    </p>
-                  </div>
-
-                  {/* UFAM & ASPACS */}
-                  <div className="sm:col-span-2 p-5 rounded-2xl bg-background/60 hover:bg-white border border-border/80 hover:border-primary/30 transition-all hover:shadow-md group flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-1.5">
-                        <span className="font-bold text-foreground text-base group-hover:text-primary transition-colors">
-                          UFAM & ASPACS
-                        </span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary border border-secondary/20">
-                          Academia & Comunidade
-                        </span>
-                      </div>
-                      <p className="text-xs text-foreground/60 font-light leading-relaxed">
-                        Parceria científica acadêmica conectada ao manejo florestal sustentável direto com comunidades extrativistas.
-                      </p>
-                    </div>
-                    <div className="shrink-0 flex items-center gap-2">
-                      <span className="text-xs font-semibold text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10">
-                        Manaus / Amazônia
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
