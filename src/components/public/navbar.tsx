@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre a BioSpin" },
   { href: "/solucoes", label: "Soluções" },
+  { href: "/tecnologia", label: "Tecnologia" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -34,6 +34,7 @@ export function Navbar() {
     !isMobileMenuOpen &&
     (pathname === "/sobre" ||
       pathname === "/blog" ||
+      pathname === "/tecnologia" ||
       pathname.startsWith("/solucoes"));
 
   return (

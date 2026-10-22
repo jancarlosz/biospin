@@ -24,8 +24,8 @@ export function ScrollRevealProvider({ children }: { children: React.ReactNode }
 
     const observer = new IntersectionObserver(observerCallback, {
       root: null,
-      rootMargin: "0px 0px -50px 0px",
-      threshold: 0.1,
+      rootMargin: "50px 0px 0px 0px",
+      threshold: 0.01,
     });
 
     const elements = document.querySelectorAll(".reveal-on-scroll");
