@@ -34,11 +34,19 @@ export default function SobrePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-          <div className="absolute inset-0 bg-nanotech-grid-dark opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/25 rounded-full blur-[130px] opacity-70 animate-float-slow" />
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
+      <section className="relative pt-60 pb-48 md:pt-80 md:pb-64 min-h-screen lg:min-h-[1150px] flex items-center bg-[#021430] text-white overflow-hidden">
+        {/* Background Image ampliada com degradê azul elegante */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="/biospin-img1.png"
+            alt="BioSpin Biotecnologia e Inovação"
+            fill
+            priority
+            className="object-cover object-center opacity-35"
+          />
+          {/* Degradê azul sobreposto: mais escuro na esquerda para dar legibilidade ao texto e suave na direita */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#021430]/95 via-[#042761]/75 to-[#021430]/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#021430] via-transparent to-[#021430]/40" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl reveal-on-scroll">
@@ -60,11 +68,11 @@ export default function SobrePage() {
             <div className="relative reveal-on-scroll flex justify-center">
               <div className="w-full max-w-md rounded-[2.5rem] overflow-hidden bg-background shadow-2xl border border-foreground/5 relative">
                 <Image
-                  src="/biospin-img-hand.png"
-                  alt="BioSpin Nanobiotecnologia e Bioativos"
-                  width={960}
-                  height={1280}
-                  className="w-full h-auto object-contain transition-transform duration-700 hover:scale-[1.02]"
+                  src="/biospin-img2.jpg"
+                  alt="Andrey Marcos, fundador da BioSpin e inovação em nanobiotecnologia"
+                  width={2400}
+                  height={3600}
+                  className="w-full h-auto object-cover transition-transform duration-700 hover:scale-[1.02]"
                   priority
                 />
               </div>

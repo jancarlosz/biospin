@@ -66,6 +66,7 @@ export function Footer() {
               <li><Link href="/" className="hover:text-white transition-colors">Início</Link></li>
               <li><Link href="/sobre" className="hover:text-white transition-colors">Sobre a BioSpin</Link></li>
               <li><Link href="/solucoes" className="hover:text-white transition-colors">Catálogo de Soluções</Link></li>
+              <li><Link href="/tecnologia" className="hover:text-white transition-colors">Tecnologia</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog & Pesquisa</Link></li>
               <li><Link href="/contato" className="hover:text-white transition-colors">Fale Conosco</Link></li>
             </ul>

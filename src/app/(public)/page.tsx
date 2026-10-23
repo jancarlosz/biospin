@@ -80,24 +80,30 @@ export default async function HomePage() {
               { type: "text", text: "APOIO:" },
               { src: "/certi.png", alt: "CERTI" },
               { src: "/catalisa.png", alt: "Catalisa ICT" },
-              { src: "/venture hub.png", alt: "Venture Hub" },
+              { src: "/logo-startup-acelerada.png", alt: "Startup Acelerada" },
+              { src: "/logo-bezos.png", alt: "Bezos Earth Fund" },
               { src: "/inpa.png", alt: "INPA" },
               { src: "/logo-biospin-horizontal.png", alt: "BioSpin" },
               { type: "text", text: "ARTICULAÇÕES:" },
               { src: "/reblas.png", alt: "REBLAS" },
               { src: "/cba.png", alt: "CBA" },
               { src: "/swissnex.png", alt: "Swissnex" },
+              { src: "/logo-penn-state.png", alt: "Penn State University" },
+              { src: "/logo-zoma.png", alt: "Zoma" },
               // Repetido para scroll infinito
               { type: "text", text: "APOIO:" },
               { src: "/certi.png", alt: "CERTI" },
               { src: "/catalisa.png", alt: "Catalisa ICT" },
-              { src: "/venture hub.png", alt: "Venture Hub" },
+              { src: "/logo-startup-acelerada.png", alt: "Startup Acelerada" },
+              { src: "/logo-bezos.png", alt: "Bezos Earth Fund" },
               { src: "/inpa.png", alt: "INPA" },
               { src: "/logo-biospin-horizontal.png", alt: "BioSpin" },
               { type: "text", text: "ARTICULAÇÕES:" },
               { src: "/reblas.png", alt: "REBLAS" },
               { src: "/cba.png", alt: "CBA" },
               { src: "/swissnex.png", alt: "Swissnex" },
+              { src: "/logo-penn-state.png", alt: "Penn State University" },
+              { src: "/logo-zoma.png", alt: "Zoma" },
             ].map((item, idx) => (
               <div key={idx} className="flex items-center shrink-0 cursor-default">
                  {item.type === "text" ? (
@@ -139,12 +145,9 @@ export default async function HomePage() {
               </div>
 
               {/* Card 3: Hackathon SUS */}
-              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group flex items-center justify-center bg-primary/5">
-                <Image src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Hackathon SUS" fill className="object-cover opacity-50 grayscale transition-transform duration-700 group-hover:scale-105 mix-blend-multiply" />
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <span className="bg-white/95 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-white/20">Aguardando Imagem</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/20 to-transparent flex flex-col justify-end p-5 z-20">
+              <div className="relative h-64 bg-[#031d49] rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
+                <Image src="/Hackathon Sus.png" alt="Finalista Hackathon SUS" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#031d49]/90 via-[#031d49]/20 to-transparent flex flex-col justify-end p-5">
                   <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Finalista Hackathon SUS</h4>
                   <p className="text-white/70 text-xs font-medium whitespace-normal">Inovação Aberta em Saúde Pública</p>
                 </div>
@@ -152,7 +155,7 @@ export default async function HomePage() {
 
               {/* Card 4: Jaraqui Valley */}
               <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center p-8">
-                <div className="relative w-full h-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
+                <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-105">
                   <Image src="/jaraqui.png" alt="Top 3 Jaraqui Valley" fill className="object-contain" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/10 to-transparent flex flex-col justify-end p-5">
