@@ -155,9 +155,9 @@ export function TechContactForm() {
 
       <button
         type="submit"
-        className="w-full py-4 px-6 bg-primary hover:bg-primary/95 text-white text-xs font-semibold tracking-wider rounded transition-all duration-200 hover:-translate-y-0.5 shadow-sm flex items-center justify-between mt-4 group"
+        className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-primary hover:bg-primary/90 text-white text-xs font-semibold tracking-wider rounded transition-all duration-200 hover:-translate-y-0.5 shadow-sm mt-4 group"
       >
-        <span>Baixar briefing de contato</span>
+        <span>Enviar formulário</span>
         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </button>
 

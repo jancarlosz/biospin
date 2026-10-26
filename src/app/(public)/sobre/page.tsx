@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, Leaf, Target, Users, BookOpen, ShieldCheck, HeartHandshake, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf, Target, BookOpen, ShieldCheck, CheckCircle2, Sparkles } from "lucide-react";
+// import { Users } from "lucide-react"; // Equipe — oculto temporariamente
 import { Button } from "@/components/ui/button";
 import { SpotlightCard } from "@/components/public/spotlight-card";
 import Link from "next/link";
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 export default function SobrePage() {
+  // EQUIPE — dados mantidos para reativação futura; seção está oculta no JSX abaixo com false && (...)
   const team = [
     {
       name: "Andrey Marcos",
@@ -144,39 +146,41 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* Equipe */}
-      <section className="py-24 md:py-32 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 leading-tight">
-              <span className="font-light">Nossa</span> <span className="font-bold text-secondary">Equipe</span>
-            </h2>
-            <p className="text-foreground/60 text-xl font-light">
-              A ciência da BioSpin é feita por especialistas apaixonados pela Amazônia e pela inovação em saúde.
-            </p>
+      {/* EQUIPE — oculto temporariamente (remova o "false &&" para reativar) */}
+      {false && (
+        <section className="py-24 md:py-32 bg-white relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
+              <h2 className="text-4xl md:text-5xl font-heading text-primary mb-6 leading-tight">
+                <span className="font-light">Nossa</span> <span className="font-bold text-secondary">Equipe</span>
+              </h2>
+              <p className="text-foreground/60 text-xl font-light">
+                A ciência da BioSpin é feita por especialistas apaixonados pela Amazônia e pela inovação em saúde.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {team.map((member, idx) => (
+                <div key={member.name} className={`reveal-on-scroll ${idx === 1 ? "reveal-delay-100" : idx === 2 ? "reveal-delay-200" : ""}`}>
+                  <SpotlightCard className="h-full bg-white p-8 rounded-[2.5rem] border border-foreground/5 transition-all duration-300 hover:shadow-lg text-center flex flex-col items-center">
+                    <div className="relative w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden bg-background shadow-inner">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-1">{member.name}</h3>
+                    <p className="text-primary font-medium mb-3 text-base">{member.role}</p>
+                    <p className="text-foreground/60 font-light max-w-sm mx-auto text-sm leading-relaxed">{member.bio}</p>
+                  </SpotlightCard>
+                </div>
+              ))}
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, idx) => (
-              <div key={member.name} className={`reveal-on-scroll ${idx === 1 ? 'reveal-delay-100' : idx === 2 ? 'reveal-delay-200' : ''}`}>
-                <SpotlightCard className="h-full bg-white p-8 rounded-[2.5rem] border border-foreground/5 transition-all duration-300 hover:shadow-lg text-center flex flex-col items-center">
-                  <div className="relative w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden bg-background shadow-inner">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3 text-base">{member.role}</p>
-                  <p className="text-foreground/60 font-light max-w-sm mx-auto text-sm leading-relaxed">{member.bio}</p>
-                </SpotlightCard>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Compromisso e Parceiros */}
       <section className="py-24 md:py-32 bg-background border-t border-border/60 relative overflow-hidden">

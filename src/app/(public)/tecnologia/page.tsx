@@ -156,19 +156,19 @@ export default function TecnologiaPage() {
       {/* ── ABERTURA ─────────────────────────────────────────────── */}
       <section id="abertura" className="py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 mb-12">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 mb-8 sm:mb-10">
             PEQUENA NA ESCALA. AMPLA NAS POSSIBILIDADES.
           </p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div className="reveal-on-scroll">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary mb-0 leading-[1.1] tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-[1.12] tracking-tight m-0 p-0">
                 <span className="font-light block mb-1">Uma interface entre</span>
                 <span>materiais e </span>
                 <em className="font-serif italic font-normal text-secondary">vida.</em>
               </h2>
             </div>
             <div className="reveal-on-scroll reveal-delay-200">
-              <p className="text-xl sm:text-2xl text-foreground/80 leading-relaxed mb-5 font-normal">
+              <p className="text-xl sm:text-2xl text-foreground/80 leading-snug mb-5 font-normal m-0 p-0">
                 A forma como um material é estruturado importa tanto quanto sua composição.
               </p>
               <p className="text-foreground/60 leading-relaxed mb-6 text-base font-light">
@@ -179,7 +179,7 @@ export default function TecnologiaPage() {
               </p>
               <Link
                 href="/sobre"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-primary font-semibold border-b border-primary/30 pb-1.5 hover:opacity-70 transition-opacity mt-2"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-primary font-semibold border-b border-primary/30 pb-1 hover:opacity-70 transition-opacity"
               >
                 Conheça nossa visão ↗
               </Link>
@@ -203,13 +203,13 @@ export default function TecnologiaPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16 mt-8">
-            <h2 className="text-4xl md:text-6xl font-heading leading-[1.07] tracking-tight">
-              <span className="font-light block">Estruturar.</span>
-              <span className="font-light block">Funcionalizar.</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 mt-8">
+            <h2 className="text-4xl md:text-6xl font-heading leading-[1.07] tracking-tight m-0 p-0">
+              <span className="font-light block mb-1">Estruturar.</span>
+              <span className="font-light block mb-1">Funcionalizar.</span>
               <em className="font-serif italic font-normal text-blue-300 block">Investigar.</em>
             </h2>
-            <p className="text-primary-foreground/70 leading-relaxed text-base sm:text-lg font-light">
+            <p className="text-primary-foreground/70 leading-snug text-base sm:text-lg font-light m-0 p-0">
               Uma abordagem integrada para relacionar composição, arquitetura fibrosa
               e resposta biológica. Cada projeto parte de uma pergunta e avança com
               critérios de avaliação definidos.
@@ -257,12 +257,12 @@ export default function TecnologiaPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-12 mt-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12 mt-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight m-0 p-0">
               <span className="font-light block mb-1">Uma plataforma.</span>
               <em className="font-serif italic font-normal text-secondary">Diferentes caminhos.</em>
             </h2>
-            <p className="text-foreground/60 leading-relaxed text-base sm:text-lg font-light">
+            <p className="text-foreground/60 leading-snug text-base sm:text-lg font-light m-0 p-0">
               Frentes de investigação que aproximam a engenharia de materiais dos
               desafios da saúde e da biotecnologia.
             </p>
@@ -285,12 +285,12 @@ export default function TecnologiaPage() {
             03 / PESQUISA &amp; DESENVOLVIMENTO
           </span>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16 mt-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 mt-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight m-0 p-0">
               <span className="font-light block mb-1">Rigor em cada etapa.</span>
               <em className="font-serif italic font-normal text-secondary">Clareza em cada avanço.</em>
             </h2>
-            <p className="text-foreground/60 leading-relaxed text-base sm:text-lg font-light">
+            <p className="text-foreground/60 leading-snug text-base sm:text-lg font-light m-0 p-0">
               Transformar uma hipótese em tecnologia exige método. Nossa proposta
               de desenvolvimento privilegia perguntas verificáveis, documentação
               e colaboração multidisciplinar.
