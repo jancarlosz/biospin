@@ -1,83 +1,100 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
+import { ChevronDown, Layers, Atom, Microscope, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface AccordionItem {
+const iconMap: Record<string, typeof Layers> = {
+  layers: Layers,
+  atom: Atom,
+  microscope: Microscope,
+  shield: ShieldCheck,
+};
+
+export interface AccordionItem {
   number: string;
   title: string;
   body: string;
+  iconKey?: "layers" | "atom" | "microscope" | "shield";
 }
 
 interface Props {
   items: AccordionItem[];
-  colorMode?: "blue" | "green";
+  className?: string;
+  defaultOpenIndex?: number | null;
 }
 
-export function TechAccordion({ items, colorMode = "blue" }: Props) {
-  const [openIndex, setOpenIndex] = useState(0);
-
-  const accentColor = colorMode === "blue" ? "#60a5fa" : "#d8f6a0";
-  const textColor = colorMode === "blue" ? "#F6F6F6" : "#f4f5ef";
-  const mutedColor = colorMode === "blue" ? "#94a3b8" : "#b1c3b9";
-  const borderColor = colorMode === "blue" ? "#ffffff18" : "#ffffff30";
-  const labelColor = colorMode === "blue" ? "#64748b" : "#9eb1a6";
+export function TechAccordion({ items, className, defaultOpenIndex = 0 }: Props) {
+  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
 
   return (
-    <div>
+    <div className={cn("space-y-4 max-w-5xl mx-auto w-full", className)}>
       {items.map((item, idx) => {
         const isOpen = openIndex === idx;
+        const Icon = (item.iconKey && iconMap[item.iconKey]) || Layers;
+
         return (
           <div
             key={item.number}
-            style={{
-              borderTop: `1px solid ${borderColor}`,
-              borderBottom: idx === items.length - 1 ? `1px solid ${borderColor}` : "none",
-            }}
+            className={cn(
+              "rounded-[2rem] bg-white border transition-all duration-300 overflow-hidden shadow-xs",
+              isOpen
+                ? "border-primary/30 shadow-md ring-1 ring-primary/10"
+                : "border-border/80 hover:border-primary/20 hover:shadow-sm"
+            )}
           >
             <button
-              onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-              className="w-full flex items-center gap-5 text-left"
-              style={{
-                padding: "22px 0",
-                cursor: "pointer",
-                background: "none",
-                border: "none",
-                color: textColor,
-              }}
+              type="button"
+              onClick={() => setOpenIndex(isOpen ? null : idx)}
+              className="w-full flex items-center justify-between gap-4 p-6 sm:p-8 text-left cursor-pointer group"
               aria-expanded={isOpen}
             >
-              <span style={{ fontSize: "10px", color: labelColor, flexShrink: 0 }}>{item.number}</span>
-              <span style={{ fontSize: "16px", flex: 1 }}>{item.title}</span>
-              <b
-                style={{
-                  fontWeight: 400,
-                  color: accentColor,
-                  fontSize: "20px",
-                  transform: isOpen ? "rotate(45deg)" : "none",
-                  transition: "transform 0.25s",
-                  flexShrink: 0,
-                  display: "inline-block",
-                }}
+              <div className="flex items-center gap-4 sm:gap-6 min-w-0">
+                <div
+                  className={cn(
+                    "w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center shrink-0 transition-colors",
+                    isOpen
+                      ? "bg-primary text-white"
+                      : "bg-primary/5 text-primary group-hover:bg-primary/10"
+                  )}
+                >
+                  <Icon className="h-6 w-6" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary border border-secondary/20 w-fit">
+                    {item.number}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold font-heading text-primary group-hover:text-secondary transition-colors">
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Seta Indicativa que rotaciona */}
+              <div
+                className={cn(
+                  "w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300",
+                  isOpen
+                    ? "bg-primary text-white border-primary rotate-180"
+                    : "bg-background text-foreground/60 border-border group-hover:border-primary/40 group-hover:text-primary"
+                )}
+                aria-hidden="true"
               >
-                +
-              </b>
+                <ChevronDown className="h-5 w-5 transition-transform duration-300" />
+              </div>
             </button>
+
+            {/* Conteúdo em cascata revelado com transição suave */}
             <div
-              style={{
-                overflow: "hidden",
-                maxHeight: isOpen ? "200px" : "0",
-                transition: "max-height 0.35s ease",
-              }}
+              className={cn(
+                "transition-all duration-300 ease-in-out px-6 sm:px-8",
+                isOpen
+                  ? "max-h-60 opacity-100 pb-8 pt-0 border-t border-border/40 mt-2"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              )}
             >
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: mutedColor,
-                  margin: "0 28px 24px",
-                  maxWidth: "440px",
-                  lineHeight: "1.7",
-                }}
-              >
+              <p className="text-foreground/75 leading-relaxed font-light text-base sm:text-lg pt-4 sm:pl-20">
                 {item.body}
               </p>
             </div>

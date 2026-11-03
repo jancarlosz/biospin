@@ -1,170 +1,247 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Loader2, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const techContactSchema = z.object({
+  nome: z.string().min(2, "Por favor, informe seu nome"),
+  email: z.string().email("E-mail profissional inválido"),
+  instituicao: z.string().min(2, "Informe sua instituição ou empresa"),
+  interesse: z.string().min(2, "Selecione um assunto"),
+  mensagem: z.string().min(20, "A mensagem deve ter pelo menos 20 caracteres"),
+  aceite: z.literal(true, {
+    message: "Você deve concordar com os termos de privacidade para enviar a mensagem",
+  }),
+  bot_field: z.string().optional(),
+});
+
+type TechContactFormData = z.infer<typeof techContactSchema>;
 
 export function TechContactForm() {
-  const [status, setStatus] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    instituicao: "",
-    interesse: "",
-    mensagem: "",
-    aceite: false,
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusText, setStatusText] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+  } = useForm<TechContactFormData>({
+    resolver: zodResolver(techContactSchema),
+    defaultValues: {
+      nome: "",
+      email: "",
+      instituicao: "",
+      interesse: "",
+      mensagem: "",
+      aceite: true,
+      bot_field: "",
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.aceite) {
-      alert("Por favor, confirme o termo de ciência antes de prosseguir.");
+  const onSubmit = async (data: TechContactFormData) => {
+    if (data.bot_field) {
+      toast.success("Mensagem enviada com sucesso!");
+      reset();
       return;
     }
 
-    const text =
-      "BIOSPIN — BRIEFING DE CONTATO & PESQUISA\n\n" +
-      `NOME: ${formData.nome}\n\n` +
-      `E-MAIL: ${formData.email}\n\n` +
-      `INSTITUIÇÃO / EMPRESA: ${formData.instituicao}\n\n` +
-      `INTERESSE: ${formData.interesse}\n\n` +
-      `MENSAGEM:\n${formData.mensagem}\n\n` +
-      "-------------------------------------------\n" +
-      `Data: ${new Date().toLocaleDateString("pt-BR")}\n` +
-      "Documento gerado para compartilhamento com a equipe da BioSpin.";
+    setIsLoading(true);
 
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `briefing-biospin-${formData.nome.toLowerCase().replace(/\s+/g, "-") || "contato"}.txt`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.nome,
+          email: data.email,
+          company: data.instituicao,
+          institution: data.instituicao,
+          subject: `[Tecnologia] ${data.interesse}`,
+          interestType: data.interesse,
+          message: data.mensagem,
+          origin: "/tecnologia",
+          consentLGPD: true,
+        }),
+      });
 
-    setStatus("Briefing gerado com sucesso! Compartilhe o arquivo baixado com a equipe da BioSpin.");
+      if (!response.ok) {
+        const resJson = await response.json().catch(() => ({}));
+        throw new Error(resJson.error || "Erro ao enviar mensagem");
+      }
+
+      setStatusText("Mensagem enviada com sucesso! Nossa equipe entrará em contato em breve.");
+      toast.success("Mensagem enviada com sucesso!");
+      reset({
+        nome: "",
+        email: "",
+        instituicao: "",
+        interesse: "",
+        mensagem: "",
+        aceite: true,
+        bot_field: "",
+      });
+    } catch (err: any) {
+      toast.error(err?.message || "Ocorreu um erro ao enviar sua mensagem. Tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Honeypot */}
+      <input
+        type="text"
+        {...register("bot_field")}
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-[11px] font-semibold text-foreground/80 uppercase tracking-wider mb-2">
-            Seu nome
-          </label>
-          <input
-            type="text"
-            required
+        <div className="space-y-2">
+          <Label htmlFor="nome">Seu nome *</Label>
+          <Input
+            id="nome"
             autoComplete="name"
-            value={formData.nome}
-            onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+            {...register("nome")}
             placeholder="Como podemos chamar você?"
-            className="w-full py-3 bg-transparent border-0 border-b border-foreground/25 focus:border-primary focus:outline-none text-foreground text-sm placeholder:text-foreground/40 transition-colors rounded-none"
+            disabled={isLoading}
           />
+          {errors.nome && (
+            <p className="text-sm text-red-500">{errors.nome.message}</p>
+          )}
         </div>
 
-        <div>
-          <label className="block text-[11px] font-semibold text-foreground/80 uppercase tracking-wider mb-2">
-            E-mail profissional
-          </label>
-          <input
+        <div className="space-y-2">
+          <Label htmlFor="email">E-mail profissional *</Label>
+          <Input
+            id="email"
             type="email"
-            required
             autoComplete="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            {...register("email")}
             placeholder="voce@instituicao.com"
-            className="w-full py-3 bg-transparent border-0 border-b border-foreground/25 focus:border-primary focus:outline-none text-foreground text-sm placeholder:text-foreground/40 transition-colors rounded-none"
+            disabled={isLoading}
           />
+          {errors.email && (
+            <p className="text-sm text-red-500">{errors.email.message}</p>
+          )}
         </div>
       </div>
 
-      <div>
-        <label className="block text-[11px] font-semibold text-foreground/80 uppercase tracking-wider mb-2">
-          Instituição ou empresa
-        </label>
-        <input
-          type="text"
-          required
+      <div className="space-y-2">
+        <Label htmlFor="instituicao">Instituição ou empresa *</Label>
+        <Input
+          id="instituicao"
           autoComplete="organization"
-          value={formData.instituicao}
-          onChange={(e) => setFormData({ ...formData, instituicao: e.target.value })}
+          {...register("instituicao")}
           placeholder="Onde você atua?"
-          className="w-full py-3 bg-transparent border-0 border-b border-foreground/25 focus:border-primary focus:outline-none text-foreground text-sm placeholder:text-foreground/40 transition-colors rounded-none"
+          disabled={isLoading}
         />
+        {errors.instituicao && (
+          <p className="text-sm text-red-500">{errors.instituicao.message}</p>
+        )}
       </div>
 
-      <div>
-        <label className="block text-[11px] font-semibold text-foreground/80 uppercase tracking-wider mb-2">
-          Interesse
-        </label>
-        <div className="relative">
-          <select
-            required
-            value={formData.interesse}
-            onChange={(e) => setFormData({ ...formData, interesse: e.target.value })}
-            className="w-full py-3 bg-transparent border-0 border-b border-foreground/25 focus:border-primary focus:outline-none text-foreground text-sm appearance-none transition-colors rounded-none pr-8 cursor-pointer"
-          >
-            <option value="" disabled className="text-foreground/50">
-              Selecione um assunto
-            </option>
-            <option value="Parceria científica" className="text-foreground">
-              Parceria científica
-            </option>
-            <option value="Codesenvolvimento" className="text-foreground">
-              Codesenvolvimento
-            </option>
-            <option value="Informações institucionais" className="text-foreground">
-              Informações institucionais
-            </option>
-            <option value="Outro assunto" className="text-foreground">
-              Outro assunto
-            </option>
-          </select>
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/50 text-xs">
-            ▼
-          </span>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="interesse">Interesse *</Label>
+        <Select
+          disabled={isLoading}
+          onValueChange={(val) => {
+            if (typeof val === "string") {
+              setValue("interesse", val, { shouldValidate: true });
+            }
+          }}
+        >
+          <SelectTrigger id="interesse">
+            <SelectValue placeholder="Selecione um assunto" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Parceria científica">Parceria científica</SelectItem>
+            <SelectItem value="Codesenvolvimento">Codesenvolvimento</SelectItem>
+            <SelectItem value="Informações institucionais">Informações institucionais</SelectItem>
+            <SelectItem value="Outro assunto">Outro assunto</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.interesse && (
+          <p className="text-sm text-red-500">{errors.interesse.message}</p>
+        )}
       </div>
 
-      <div>
-        <label className="block text-[11px] font-semibold text-foreground/80 uppercase tracking-wider mb-2">
-          Sua mensagem
-        </label>
-        <textarea
+      <div className="space-y-2">
+        <Label htmlFor="mensagem">Sua mensagem *</Label>
+        <Textarea
+          id="mensagem"
           rows={4}
-          required
-          minLength={15}
-          value={formData.mensagem}
-          onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+          {...register("mensagem")}
           placeholder="Compartilhe o contexto e o objetivo da conversa."
-          className="w-full py-3 bg-transparent border-0 border-b border-foreground/25 focus:border-primary focus:outline-none text-foreground text-sm placeholder:text-foreground/40 transition-colors resize-y rounded-none"
+          className="min-h-[120px]"
+          disabled={isLoading}
         />
+        {errors.mensagem && (
+          <p className="text-sm text-red-500">{errors.mensagem.message}</p>
+        )}
       </div>
 
-      <label className="flex items-start gap-3 cursor-pointer pt-2 group">
-        <input
-          type="checkbox"
-          required
-          checked={formData.aceite}
-          onChange={(e) => setFormData({ ...formData, aceite: e.target.checked })}
-          className="mt-1 h-4 w-4 rounded border-foreground/30 text-primary focus:ring-primary accent-[#00058B]"
-        />
-        <span className="text-xs text-foreground/70 leading-relaxed font-light group-hover:text-foreground transition-colors">
-          Entendo que o briefing será baixado no meu dispositivo e deverá ser compartilhado por mim.
-        </span>
-      </label>
+      <div className="space-y-4 pt-1">
+        <div className="flex items-start space-x-2">
+          <input
+            type="checkbox"
+            id="aceite"
+            {...register("aceite")}
+            className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary accent-primary"
+            disabled={isLoading}
+          />
+          <Label htmlFor="aceite" className="text-xs text-foreground/70 leading-relaxed font-normal cursor-pointer">
+            Concordo com o envio dos meus dados para contato conforme a Política de Privacidade.
+          </Label>
+        </div>
+        {errors.aceite && (
+          <p className="text-sm text-red-500">{errors.aceite.message}</p>
+        )}
+      </div>
 
-      <button
+      <Button
         type="submit"
-        className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-primary hover:bg-primary/90 text-white text-xs font-semibold tracking-wider rounded transition-all duration-200 hover:-translate-y-0.5 shadow-sm mt-4 group"
+        disabled={isLoading}
+        size="lg"
+        className="w-full text-base h-14 rounded-full font-semibold shadow-md group"
       >
-        <span>Enviar formulário</span>
-        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </button>
+        {isLoading ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Enviando mensagem...
+          </>
+        ) : (
+          <>
+            <span>Enviar mensagem</span>
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </>
+        )}
+      </Button>
 
-      {status && (
-        <div className="flex items-center gap-2 p-3 bg-blue-50 border border-blue-200 rounded text-xs text-primary font-medium animate-in fade-in">
-          <CheckCircle2 className="h-4 w-4 text-secondary flex-shrink-0" />
-          <span>{status}</span>
+      {statusText && (
+        <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 text-xs text-primary font-medium flex items-center gap-3">
+          <CheckCircle2 className="h-5 w-5 text-secondary shrink-0" />
+          <span>{statusText}</span>
         </div>
       )}
     </form>

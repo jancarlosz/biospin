@@ -13,19 +13,42 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const [solutions, posts] = await Promise.all([
-    db.solution.findMany({
-      where: { status: "PUBLISHED" },
-      orderBy: { createdAt: "desc" },
-      take: 3,
-    }),
-    db.post.findMany({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-      take: 3,
-      include: { category: true },
-    }),
-  ]);
+  let solutions: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    summary: string;
+    imageUrl: string | null;
+  }> = [];
+  let posts: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    excerpt: string | null;
+    coverImageUrl: string | null;
+    publishedAt: Date | null;
+    category: { name: string };
+  }> = [];
+
+  try {
+    const [fetchedSolutions, fetchedPosts] = await Promise.all([
+      db.solution.findMany({
+        where: { status: "PUBLISHED" },
+        orderBy: { createdAt: "desc" },
+        take: 3,
+      }),
+      db.post.findMany({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+        take: 3,
+        include: { category: true },
+      }),
+    ]);
+    solutions = fetchedSolutions;
+    posts = fetchedPosts;
+  } catch (error) {
+    console.warn("Aviso: banco de dados offline ou inacessível no momento. Renderizando dados estáticos de fallback.", error);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background">

@@ -12,11 +12,25 @@ export const metadata = {
 };
 
 export default async function SolucoesPage() {
-  // Fetch additional published solutions from database
-  const dbSolutions = await db.solution.findMany({
-    where: { status: "PUBLISHED" },
-    orderBy: { createdAt: "desc" },
-  });
+  // Fetch additional published solutions from database safely
+  let dbSolutions: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    summary: string;
+    stage: string | null;
+    targetAudience: string | null;
+    imageUrl: string | null;
+  }> = [];
+
+  try {
+    dbSolutions = await db.solution.findMany({
+      where: { status: "PUBLISHED" },
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    console.warn("Aviso: banco de dados inacessível em /solucoes. Exibindo soluções âncoras.", error);
+  }
 
   // Filter out any db solutions that match the static anchor slugs to avoid duplicates
   const dynamicSolutions = dbSolutions.filter(

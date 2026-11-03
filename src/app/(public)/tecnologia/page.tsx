@@ -1,37 +1,56 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Layers, Microscope, Atom, FlaskConical } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Layers,
+  Atom,
+  Microscope,
+  FlaskConical,
+  CheckCircle2,
+  Building2,
+  GraduationCap,
+  Handshake,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
 import { SpotlightCard } from "@/components/public/spotlight-card";
-import { TechFibersCanvas } from "@/components/public/tech-fibers-canvas";
 import { TechAccordion } from "@/components/public/tech-accordion";
 import { TechApplications } from "@/components/public/tech-applications";
 import { TechContactForm } from "@/components/public/tech-contact-form";
 
 export const metadata: Metadata = {
-  title: "Tecnologia | BioSpin — Engenharia de Nanofibras e Biomateriais",
+  title: "Tecnologia | BioSpin — A próxima escala do cuidado",
   description:
-    "Conheça a plataforma tecnológica da BioSpin: engenharia de nanofibras, biomateriais bioativos e interfaces biológicas orientadas por evidências.",
+    "BioSpin: deeptech brasileira dedicada à engenharia de nanofibras, biomateriais bioativos e pesquisa em regeneração tecidual.",
 };
 
 const platformItems = [
   {
     number: "01",
     title: "Engenharia de nanofibras",
+    iconKey: "layers" as const,
     body: "Explorar a organização de fibras, porosidade e características de superfície como variáveis de projeto para biomateriais.",
   },
   {
     number: "02",
     title: "Biomateriais bioativos",
+    iconKey: "atom" as const,
     body: "Investigar a associação entre matrizes e componentes bioativos, considerando compatibilidade, estabilidade e função pretendida.",
   },
   {
     number: "03",
     title: "Interfaces biológicas",
+    iconKey: "microscope" as const,
     body: "Estudar a interação entre materiais e sistemas biológicos por meio de protocolos adequados à hipótese e ao estágio de desenvolvimento.",
   },
   {
     number: "04",
     title: "Desenvolvimento orientado por evidências",
+    iconKey: "shield" as const,
     body: "Definir requisitos, documentar resultados e revisar decisões. O avanço depende de caracterização, validação e avaliação regulatória aplicável.",
   },
 ];
@@ -71,229 +90,208 @@ export default function TecnologiaPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
 
-      {/* ── HERO ─────────────────────────────────────────────────── */}
+      {/* ── HERO DA PÁGINA ────────────────────────────────────────── */}
       <section
         id="inicio"
-        className="hero relative pt-36 pb-28 md:pt-48 md:pb-32 bg-primary text-primary-foreground overflow-hidden min-h-[90vh] lg:min-h-[920px] flex items-center"
+        className="relative pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-primary text-primary-foreground"
       >
-        {/* Grid nanotecnológico e ambiência */}
+        {/* Grid nanotecnológico e ambiência orgânica fluida idênticos aos de Soluções e Blog */}
         <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
           <div className="absolute inset-0 bg-nanotech-grid-dark opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
           <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/25 rounded-full blur-[130px] opacity-70 animate-float-slow" />
           <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
         </div>
 
-        {/* Canvas de nanofibras (hero-art) posicionado à direita */}
-        <div
-          className="absolute right-[-15%] top-10 w-[85%] h-[95%] opacity-90 pointer-events-none z-0"
-          style={{ maskImage: "linear-gradient(90deg, transparent, #000 28%)" }}
-          aria-hidden="true"
-        >
-          <TechFibersCanvas colorMode="blue" />
-        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-4xl reveal-on-scroll">
+            {/* Selo Kicker Institucional */}
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-xs font-bold mb-8 tracking-wider uppercase border border-white/20">
+              <span className="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              CIÊNCIA BRASILEIRA. POSSIBILIDADES SEM FRONTEIRAS.
+            </span>
 
-        {/* Conteúdo principal do Hero */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10 w-full">
-          <div className="max-w-2xl">
-            {/* Eyebrow */}
-            <div className="flex items-center gap-2.5 text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-blue-300 mb-8 sm:mb-10">
-              <span className="inline-block w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.9)] animate-pulse" />
-              <span>CIÊNCIA BRASILEIRA. POSSIBILIDADES SEM FRONTEIRAS.</span>
-            </div>
-
-            {/* Headline H1 */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-heading font-light leading-[1.07] tracking-tight mb-8">
-              O futuro do cuidado<br />
-              começa em uma<br />
-              <em className="font-serif italic font-normal text-blue-300">nova escala.</em>
+            {/* Título Principal com a Formatação Oficial da BioSpin */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading tracking-tight mb-8 leading-[1.15]">
+              <span className="font-light block mb-2">O futuro do cuidado começa</span>
+              <span className="inline-block whitespace-nowrap">
+                <span className="font-light">em uma </span>
+                <span className="font-bold">nova escala.</span>
+              </span>
             </h1>
 
-            {/* Intro */}
-            <p className="text-base sm:text-lg text-primary-foreground/75 leading-relaxed font-light max-w-md mb-8">
-              Engenharia de nanofibras e biomateriais bioativos para explorar
-              novas possibilidades em regeneração tecidual.
+            {/* Subtítulo */}
+            <p className="text-xl md:text-2xl text-primary-foreground/80 leading-relaxed font-light max-w-3xl mb-10">
+              Engenharia de nanofibras e biomateriais bioativos para explorar novas possibilidades em regeneração tecidual.
             </p>
 
-            {/* Ações */}
-            <div className="flex flex-col items-start gap-3">
-              <Link
-                href="#plataforma"
-                className="inline-flex items-center justify-between gap-10 px-6 py-3.5 rounded bg-blue-300 text-[#00058B] hover:bg-white text-xs font-semibold tracking-wide transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+            {/* Botões de Ação Padronizados */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <Button
+                size="lg"
+                className="text-base px-8 h-14 rounded-full bg-white text-primary hover:bg-white/90 shadow-lg font-semibold group"
+                render={<Link href="#plataforma" />}
               >
                 <span>Explore a plataforma</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#parcerias"
-                className="inline-flex items-center gap-2 text-xs text-primary-foreground/70 hover:text-white transition-colors mt-2 group"
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline-white"
+                className="text-base px-8 h-14 rounded-full border border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white backdrop-blur-md shadow-md font-semibold group"
+                render={<Link href="#parcerias" />}
               >
                 <span>Conecte sua pesquisa à BioSpin</span>
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
+
+            {/* Selos de Credibilidade */}
+            <div className="flex flex-wrap gap-4 text-sm font-medium text-primary-foreground/75">
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+                <CheckCircle2 className="h-4 w-4 text-cyan-300" /> 01 / ARQUITETURAS FIBROSAS
+              </div>
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+                <CheckCircle2 className="h-4 w-4 text-cyan-300" /> DA ESTRUTURA À FUNÇÃO
+              </div>
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+                <CheckCircle2 className="h-4 w-4 text-cyan-300" /> NANOFIBRAS / BIOATIVOS / REGENERAÇÃO
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Legenda técnica no canto inferior direito sobre o canvas */}
-        <div className="absolute right-6 sm:right-10 lg:right-16 bottom-20 flex flex-col text-right gap-1 text-[9px] tracking-[1.2px] text-blue-200/50 uppercase z-10 pointer-events-none">
-          <span className="font-medium text-blue-200/70">01 / ARQUITETURAS FIBROSAS</span>
-          <span className="text-[9px] tracking-[0.4px] text-blue-200/40">Visualização conceitual · fora de escala</span>
-        </div>
-
-        {/* Rodapé do hero */}
-        <div className="absolute bottom-0 left-6 sm:left-10 lg:left-16 right-6 sm:right-10 lg:right-16 h-16 flex justify-between items-center text-[9px] tracking-[1.3px] uppercase border-t border-white/15 text-primary-foreground/50 z-10">
-          <span>DA ESTRUTURA À FUNÇÃO.</span>
-          <Link
-            href="#plataforma"
-            className="text-blue-300 hover:text-white transition-colors"
-          >
-            Conheça a BioSpin ↓
-          </Link>
-          <span className="hidden sm:block">NANOFIBRAS / BIOATIVOS / REGENERAÇÃO</span>
-        </div>
       </section>
 
-      {/* ── ABERTURA ─────────────────────────────────────────────── */}
+      {/* ── 01 / ABERTURA ─────────────────────────────────────────── */}
       <section id="abertura" className="py-24 md:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 mb-8 sm:mb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-8 border border-primary/20">
+            <Sparkles className="h-3.5 w-3.5 text-secondary" />
             PEQUENA NA ESCALA. AMPLA NAS POSSIBILIDADES.
-          </p>
+          </span>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Lado Esquerdo: Título Alinhado */}
             <div className="reveal-on-scroll">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-[1.12] tracking-tight m-0 p-0">
-                <span className="font-light block mb-1">Uma interface entre</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight">
+                <span className="font-light block mb-2">Uma interface entre</span>
                 <span>materiais e </span>
-                <em className="font-serif italic font-normal text-secondary">vida.</em>
+                <span className="font-bold text-secondary">vida.</span>
               </h2>
             </div>
-            <div className="reveal-on-scroll reveal-delay-200">
-              <p className="text-xl sm:text-2xl text-foreground/80 leading-snug mb-5 font-normal m-0 p-0">
+
+            {/* Lado Direito: Descrição e Ação Alinhadas */}
+            <div className="reveal-on-scroll reveal-delay-200 space-y-6">
+              <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-light">
                 A forma como um material é estruturado importa tanto quanto sua composição.
               </p>
-              <p className="text-foreground/60 leading-relaxed mb-6 text-base font-light">
-                A BioSpin é uma deeptech brasileira com foco em engenharia de nanofibras,
-                biomateriais bioativos e regeneração tecidual. Nossa proposta conecta
-                arquitetura de materiais e funcionalidade biológica para orientar o
-                desenvolvimento de soluções fundamentadas em pesquisa.
+
+              <p className="text-foreground/70 leading-relaxed text-lg font-light">
+                A BioSpin é uma deeptech brasileira com foco em engenharia de nanofibras, biomateriais bioativos e regeneração tecidual. Nossa proposta conecta arquitetura de materiais e funcionalidade biológica para orientar o desenvolvimento de soluções fundamentadas em pesquisa.
               </p>
-              <Link
-                href="/sobre"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-primary font-semibold border-b border-primary/30 pb-1 hover:opacity-70 transition-opacity"
-              >
-                Conheça nossa visão ↗
-              </Link>
+
+              <div className="pt-2">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-8 h-14 border-foreground/15 hover:border-primary/40 font-medium group"
+                  render={<Link href="/sobre" />}
+                >
+                  <span>Conheça nossa visão</span>
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── PLATAFORMA ───────────────────────────────────────────── */}
-      <section id="plataforma" className="py-24 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-nanotech-grid-dark opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[130px] opacity-50 pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
-          <div className="flex justify-between items-start mb-4">
-            <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-blue-300">
+      {/* ── 02 / PLATAFORMA ───────────────────────────────────────── */}
+      <section id="plataforma" className="py-24 md:py-32 bg-background relative overflow-hidden border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">
+              <Layers className="h-3.5 w-3.5 text-secondary" />
               01 / TECNOLOGIA &amp; PLATAFORMA
             </span>
-            <span className="text-[9px] sm:text-xs uppercase tracking-wider text-primary-foreground/40 hidden sm:block">
+            <span className="text-xs uppercase font-bold tracking-wider text-foreground/40">
               ENGENHARIA QUE CONECTA ESCALAS
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 mt-8">
-            <h2 className="text-4xl md:text-6xl font-heading leading-[1.07] tracking-tight m-0 p-0">
-              <span className="font-light block mb-1">Estruturar.</span>
-              <span className="font-light block mb-1">Funcionalizar.</span>
-              <em className="font-serif italic font-normal text-blue-300 block">Investigar.</em>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading text-primary leading-tight">
+              <span className="font-light block mb-1">Estruturar. Funcionalizar.</span>
+              <span className="font-bold text-secondary">Investigar.</span>
             </h2>
-            <p className="text-primary-foreground/70 leading-snug text-base sm:text-lg font-light m-0 p-0">
-              Uma abordagem integrada para relacionar composição, arquitetura fibrosa
-              e resposta biológica. Cada projeto parte de uma pergunta e avança com
-              critérios de avaliação definidos.
+            <p className="text-foreground/70 leading-relaxed text-lg font-light">
+              Uma abordagem integrada para relacionar composição, arquitetura fibrosa e resposta biológica. Cada projeto parte de uma pergunta e avança com critérios de avaliação definidos.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Orbe visual azul */}
-            <div className="relative flex items-center justify-center min-h-[320px] reveal-on-scroll">
-              <div
-                className="w-[260px] h-[260px] rounded-full"
-                style={{
-                  border: "1px solid rgba(59,91,255,0.3)",
-                  background: "repeating-radial-gradient(ellipse at 20% 20%, transparent 0 6px, rgba(59,91,255,0.15) 7px, transparent 8px 11px)",
-                  transform: "rotate(-25deg)",
-                  boxShadow: "inset 10px 0 35px rgba(59,91,255,0.1), 0 0 100px rgba(0,0,251,0.08)",
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-[320px] h-[320px] rounded-full" style={{ background: "radial-gradient(ellipse, rgba(59,91,255,0.08), transparent 65%)" }} />
-              </div>
-              <span className="absolute bottom-0 text-[9px] tracking-[1.4px] uppercase text-primary-foreground/30">
-                COMPOSIÇÃO ↔ ARQUITETURA ↔ FUNÇÃO
-              </span>
-            </div>
-
-            <div className="reveal-on-scroll reveal-delay-200">
-              <TechAccordion items={platformItems} colorMode="blue" />
-            </div>
+          {/* Formato de cascata (ao clicar revela o texto com seta indicativa) */}
+          <div className="reveal-on-scroll">
+            <TechAccordion items={platformItems} />
           </div>
+
+          <div className="mt-12 text-center text-xs uppercase font-bold tracking-widest text-foreground/40">
+            COMPOSIÇÃO ↔ ARQUITETURA ↔ FUNÇÃO
+          </div>
+
         </div>
       </section>
 
-      {/* ── APLICAÇÕES ───────────────────────────────────────────── */}
-      <section id="aplicacoes" className="py-24 md:py-32 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-nanotech-grid opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
-          <div className="flex justify-between items-start mb-4">
-            <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40">
+      {/* ── 03 / APLICAÇÕES EM PERSPECTIVA ────────────────────────── */}
+      <section id="aplicacoes" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">
+              <Sparkles className="h-3.5 w-3.5 text-secondary" />
               02 / APLICAÇÕES EM PERSPECTIVA
             </span>
-            <span className="text-[9px] sm:text-xs uppercase tracking-wider text-foreground/30 hidden sm:block">
+            <span className="text-xs uppercase font-bold tracking-wider text-foreground/40">
               DA HIPÓTESE AO DESENVOLVIMENTO
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12 mt-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight m-0 p-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading text-primary leading-tight">
               <span className="font-light block mb-1">Uma plataforma.</span>
-              <em className="font-serif italic font-normal text-secondary">Diferentes caminhos.</em>
+              <span className="font-bold text-secondary">Diferentes caminhos.</span>
             </h2>
-            <p className="text-foreground/60 leading-snug text-base sm:text-lg font-light m-0 p-0">
-              Frentes de investigação que aproximam a engenharia de materiais dos
-              desafios da saúde e da biotecnologia.
+            <p className="text-foreground/70 leading-relaxed text-lg font-light">
+              Frentes de investigação que aproximam a engenharia de materiais dos desafios da saúde e da biotecnologia.
             </p>
           </div>
 
           {/* Componente interativo de aplicações com filtros e modal */}
           <TechApplications />
 
-          <p className="mt-12 text-xs text-foreground/45 leading-relaxed max-w-3xl">
-            As frentes apresentadas descrevem possibilidades de pesquisa. Não representam produtos aprovados,
-            indicação de uso médico ou comprovação de eficácia clínica.
+          {/* Mensagem centralizada sem caixa */}
+          <p className="mt-14 text-center text-xs sm:text-sm text-foreground/50 leading-relaxed font-light max-w-3xl mx-auto">
+            As frentes apresentadas descrevem possibilidades de pesquisa. Não representam produtos aprovados, indicação de uso médico ou comprovação de eficácia clínica.
           </p>
+
         </div>
       </section>
 
-      {/* ── PESQUISA & DESENVOLVIMENTO ───────────────────────────── */}
-      <section id="pesquisa" className="py-24 md:py-32 bg-muted/40 relative overflow-hidden border-t border-foreground/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 block mb-4">
+      {/* ── 04 / PESQUISA & DESENVOLVIMENTO ───────────────────────── */}
+      <section id="pesquisa" className="py-24 md:py-32 bg-background relative overflow-hidden border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6 border border-primary/20">
+            <FlaskConical className="h-3.5 w-3.5 text-secondary" />
             03 / PESQUISA &amp; DESENVOLVIMENTO
           </span>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 mt-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight m-0 p-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading text-primary leading-tight">
               <span className="font-light block mb-1">Rigor em cada etapa.</span>
-              <em className="font-serif italic font-normal text-secondary">Clareza em cada avanço.</em>
+              <span className="font-bold text-secondary">Clareza em cada avanço.</span>
             </h2>
-            <p className="text-foreground/60 leading-snug text-base sm:text-lg font-light m-0 p-0">
-              Transformar uma hipótese em tecnologia exige método. Nossa proposta
-              de desenvolvimento privilegia perguntas verificáveis, documentação
-              e colaboração multidisciplinar.
+            <p className="text-foreground/70 leading-relaxed text-lg font-light">
+              Transformar uma hipótese em tecnologia exige método. Nossa proposta de desenvolvimento privilegia perguntas verificáveis, documentação e colaboração multidisciplinar.
             </p>
           </div>
 
@@ -301,157 +299,279 @@ export default function TecnologiaPage() {
             {researchSteps.map((step, idx) => {
               const Icon = step.icon;
               return (
-                <div key={step.number} className={`reveal-on-scroll ${idx === 1 ? "reveal-delay-100" : idx === 2 ? "reveal-delay-200" : idx === 3 ? "reveal-delay-300" : ""}`}>
-                  <SpotlightCard className="h-full bg-card rounded-2xl p-6 border border-foreground/10 hover:border-primary/20 transition-all duration-300 shadow-sm">
-                    <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6">
-                      <Icon className="h-6 w-6 text-primary" />
+                <div
+                  key={step.number}
+                  className={`reveal-on-scroll ${
+                    idx === 1
+                      ? "reveal-delay-100"
+                      : idx === 2
+                      ? "reveal-delay-200"
+                      : idx === 3
+                      ? "reveal-delay-300"
+                      : ""
+                  }`}
+                >
+                  <SpotlightCard className="h-full bg-white p-8 rounded-[2.5rem] border border-foreground/5 shadow-[0_10px_40px_rgba(0,0,0,0.02)] transition-all duration-300 flex flex-col hover:-translate-y-1 hover:border-primary/20">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary">
+                        <Icon className="h-7 w-7 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">
+                        {step.number} — {step.label}
+                      </span>
                     </div>
-                    <span className="text-[9px] tracking-[1.4px] uppercase text-foreground/40 block mb-3 font-semibold">
-                      {step.number} — {step.label}
-                    </span>
-                    <h3 className="text-xl font-heading text-primary font-normal mb-2">{step.title}</h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed font-light">{step.body}</p>
+
+                    <h3 className="text-2xl font-bold font-heading text-primary mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-foreground/70 text-base leading-relaxed font-light flex-1">
+                      {step.body}
+                    </p>
                   </SpotlightCard>
                 </div>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-3 mt-14 pt-8 border-t border-foreground/10">
-            <span className="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse flex-shrink-0" />
-            <p className="text-xs sm:text-sm text-foreground/60 font-light">
+          <div className="flex items-center gap-3 mt-14 pt-8 border-t border-border/60">
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-secondary animate-pulse flex-shrink-0" />
+            <p className="text-sm text-foreground/70 font-light">
               Ciência responsável também é comunicar os limites do que sabemos.
             </p>
           </div>
+
         </div>
       </section>
 
-      {/* ── SOBRE A BIOSPIN ───────────────────────────────────────── */}
-      <section id="sobre" className="py-24 md:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 block mb-12">
+      {/* ── 05 / SOBRE A BIOSPIN ──────────────────────────────────── */}
+      <section id="sobre" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-8 border border-primary/20">
+            <Sparkles className="h-3.5 w-3.5 text-secondary" />
             04 / SOBRE A BIOSPIN
           </span>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div className="reveal-on-scroll">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5 reveal-on-scroll">
+              <h2 className="text-4xl md:text-5xl font-heading text-primary leading-tight">
                 <span className="font-light block mb-1">Origem brasileira.</span>
-                <em className="font-serif italic font-normal text-secondary">Visão aberta ao mundo.</em>
+                <span className="font-bold text-secondary">Visão aberta ao mundo.</span>
               </h2>
             </div>
-            <div className="reveal-on-scroll reveal-delay-200">
-              <p className="text-xl sm:text-2xl text-foreground/80 leading-relaxed mb-6 font-normal">
+
+            <div className="lg:col-span-7 reveal-on-scroll reveal-delay-200 space-y-6">
+              <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-light">
                 Conectamos a precisão da engenharia à complexidade dos sistemas vivos.
               </p>
-              <p className="text-foreground/60 leading-relaxed mb-5 text-base font-light">
+              <p className="text-foreground/70 leading-relaxed text-base sm:text-lg font-light">
                 A BioSpin se dedica à fronteira entre nanotecnologia e biomateriais. Seu foco está em explorar como estruturas fibrosas e componentes bioativos podem contribuir para novas abordagens de pesquisa em regeneração tecidual.
               </p>
-              <p className="text-foreground/60 leading-relaxed mb-8 text-base font-light">
+              <p className="text-foreground/70 leading-relaxed text-base sm:text-lg font-light">
                 Valorizamos o diálogo entre disciplinas e a construção de conhecimento com responsabilidade. O potencial de uma tecnologia deve ser acompanhado por evidências proporcionais às suas aplicações.
               </p>
-              <div className="flex flex-wrap gap-4 pt-4 border-t border-foreground/10">
-                {["Rigor científico", "Colaboração", "Responsabilidade"].map((val) => (
-                  <span
-                    key={val}
-                    className="text-xs tracking-wider text-foreground/70 border-b border-foreground/30 pb-1"
-                  >
-                    {val}
-                  </span>
-                ))}
+              
+              <div className="pt-6 border-t border-border/60">
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-6 sm:gap-10">
+                  {["Rigor científico", "Colaboração", "Responsabilidade"].map((val) => (
+                    <span
+                      key={val}
+                      className="text-sm sm:text-base font-semibold text-primary tracking-wide border-b border-primary/30 pb-1 hover:border-primary transition-colors cursor-default whitespace-nowrap"
+                    >
+                      {val}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* ── PARCERIAS ────────────────────────────────────────────── */}
+      {/* ── 06 / PARCERIAS ────────────────────────────────────────── */}
       <section id="parcerias" className="py-24 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-nanotech-grid-dark opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/20 rounded-full blur-[130px] opacity-50 animate-float-slow pointer-events-none" />
-        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] opacity-60 animate-float-reverse pointer-events-none" />
+        <div className="absolute inset-0 bg-nanotech-grid-dark opacity-25 pointer-events-none" />
+        <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/20 rounded-full blur-[130px] opacity-60 animate-float-slow pointer-events-none" />
+        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] opacity-50 animate-float-reverse pointer-events-none" />
 
-        {/* Símbolo decorativo de asterisco / biospin */}
-        <span
-          className="absolute pointer-events-none select-none text-white/[0.03] leading-none"
-          style={{ fontSize: "500px", top: "-180px", right: "-100px" }}
-          aria-hidden="true"
-        >
-          ✳
-        </span>
-
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-blue-300 block mb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider mb-8 border border-white/20 backdrop-blur-sm">
+            <Sparkles className="h-3.5 w-3.5 text-secondary" />
             05 / CONEXÕES QUE MOVEM A CIÊNCIA
           </span>
 
-          <h2 className="text-5xl md:text-7xl font-heading leading-[1.07] tracking-tight mb-16">
-            <span className="font-light block">O próximo avanço</span>
-            <span className="font-light block">pode começar com</span>
-            <em className="font-serif italic font-normal text-blue-300 block">uma conversa.</em>
+          <h2 className="text-4xl md:text-6xl font-heading leading-tight tracking-tight mb-16">
+            <span className="font-light block mb-2">O próximo avanço pode começar com</span>
+            <span className="font-bold text-white">uma conversa.</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <p className="text-primary-foreground/60 leading-relaxed text-base sm:text-lg font-light">
-              Buscamos conexões com quem compartilha desafios em materiais,
-              biotecnologia e saúde.
-            </p>
-            <div>
-              <h3 className="text-lg font-heading text-primary-foreground font-light mb-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/15 flex flex-col">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
+                <Handshake className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-bold font-heading text-white mb-3">
+                Buscamos conexões
+              </h3>
+              <p className="text-primary-foreground/70 text-base leading-relaxed font-light">
+                Com quem compartilha desafios em materiais, biotecnologia e saúde.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/15 flex flex-col">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
+                <GraduationCap className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-bold font-heading text-white mb-3">
                 Instituições de pesquisa
               </h3>
-              <p className="text-primary-foreground/60 text-sm leading-relaxed font-light">
+              <p className="text-primary-foreground/70 text-base leading-relaxed font-light">
                 Diálogo científico e construção de propostas de investigação conjunta.
               </p>
             </div>
-            <div>
-              <h3 className="text-lg font-heading text-primary-foreground font-light mb-2">
+
+            <div className="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/15 flex flex-col">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
+                <Building2 className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-bold font-heading text-white mb-3">
                 Empresas e inovação
               </h3>
-              <p className="text-primary-foreground/60 text-sm leading-relaxed font-light">
+              <p className="text-primary-foreground/70 text-base leading-relaxed font-light">
                 Discussão de desafios de aplicação e oportunidades de codesenvolvimento.
               </p>
             </div>
           </div>
 
-          <Link
-            href="#contato"
-            className="inline-flex items-center justify-between gap-8 px-7 py-4 rounded bg-blue-300 text-[#00058B] hover:bg-white text-xs font-semibold tracking-wide transition-all duration-200 hover:-translate-y-0.5 shadow-sm group"
+          <Button
+            size="lg"
+            className="px-8 h-14 rounded-full bg-white text-primary hover:bg-white/90 font-semibold shadow-lg text-base group"
+            render={<Link href="#contato" />}
           >
             <span>Proponha uma colaboração</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </Button>
+
         </div>
       </section>
 
-      {/* ── CONTATO ──────────────────────────────────────────────── */}
-      <section id="contato" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-foreground/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Lado esquerdo: cabeçalho e briefing info */}
-            <div>
-              <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 block mb-12">
-                06 / CONTATO
-              </span>
+      {/* ── 07 / CONTATO ──────────────────────────────────────────── */}
+      <section id="contato" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            {/* Lado esquerdo: cabeçalho e canais oficiais */}
+            <div className="lg:col-span-5 space-y-8 reveal-on-scroll">
+              <div>
+                <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6 border border-primary/20">
+                  <Sparkles className="h-3.5 w-3.5 text-secondary" />
+                  06 / CONTATO
+                </span>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-primary leading-tight tracking-tight mb-8">
-                Vamos conectar<br />
-                <em className="font-serif italic font-normal text-secondary">possibilidades.</em>
-              </h2>
+                <h2 className="text-4xl md:text-5xl font-heading text-primary leading-tight mb-6">
+                  <span className="font-light block mb-1">Vamos conectar</span>
+                  <span className="font-bold text-secondary">possibilidades.</span>
+                </h2>
 
-              <p className="text-base sm:text-lg text-foreground/80 leading-relaxed font-light max-w-sm mb-10">
-                Conte o que você está investigando e qual desafio deseja explorar com a BioSpin.
-              </p>
+                <p className="text-xl text-foreground/75 leading-relaxed font-light mb-8">
+                  Conte o que você está investigando e qual desafio deseja explorar com a BioSpin.
+                </p>
 
-              <p className="text-xs text-foreground/50 leading-relaxed font-light max-w-sm pt-8 border-t border-foreground/10">
-                Prepare um briefing para compartilhar com a equipe pelo canal oficial de sua preferência. Os dados são usados apenas neste navegador para gerar o arquivo; nenhum envio é realizado por este site.
-              </p>
+                <div className="p-6 rounded-2xl bg-background border border-border/80 text-xs text-foreground/60 leading-relaxed font-light">
+                  Envie sua mensagem diretamente para nossa equipe científica e técnica. Retornaremos o contato pelo seu e-mail profissional com rapidez e discrição.
+                </div>
+              </div>
+
+              {/* Canal WhatsApp Destaque idêntico ao de Contato */}
+              <SpotlightCard
+                spotlightColor="rgba(34, 197, 94, 0.15)"
+                className="p-6 rounded-3xl bg-green-50/60 border border-green-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-green-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <FaWhatsapp className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground text-base">Atendimento via WhatsApp</h3>
+                    <p className="text-xs text-foreground/70">Resposta rápida para novos contatos</p>
+                  </div>
+                </div>
+                <a
+                  href="https://wa.me/5548988401508?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20BioSpin."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full shadow-sm transition-colors whitespace-nowrap"
+                >
+                  Iniciar Conversa
+                </a>
+              </SpotlightCard>
+
+              {/* Informações de Contato Oficiais */}
+              <div className="space-y-6 pt-2">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground text-base">E-mail Institucional</h3>
+                    <a
+                      href="mailto:contato@biospin.com.br"
+                      className="text-primary hover:underline text-sm font-medium"
+                    >
+                      contato@biospin.com.br
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground text-base">Telefone</h3>
+                    <a
+                      href="tel:+5548988401508"
+                      className="text-foreground/70 hover:text-primary transition-colors text-sm"
+                    >
+                      +55 (48) 98840-1508
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground text-base">Sede &amp; Laboratório</h3>
+                    <p className="text-foreground/70 text-sm">
+                      Manaus, Amazonas — Brasil
+                      <br />
+                      <span className="text-xs text-foreground/50">LTMN / INPA e UFAM</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Lado direito: formulário com campos minimalistas */}
-            <div>
-              <TechContactForm />
+            {/* Lado direito: formulário estruturado */}
+            <div className="lg:col-span-7 reveal-on-scroll reveal-delay-200">
+              <SpotlightCard className="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-200/80 shadow-sm transition-all duration-300">
+                <div className="mb-8">
+                  <h3 className="text-2xl md:text-3xl font-bold font-heading text-foreground mb-2">
+                    Envie sua Mensagem
+                  </h3>
+                  <p className="text-sm text-foreground/60 font-light">
+                    Preencha o formulário abaixo para iniciar uma conversa com nossos especialistas.
+                  </p>
+                </div>
+
+                <TechContactForm />
+              </SpotlightCard>
             </div>
+
           </div>
         </div>
       </section>

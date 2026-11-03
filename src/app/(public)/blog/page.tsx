@@ -22,31 +22,48 @@ export default async function BlogPage({
   const query = resolvedSearchParams.q || "";
   const selectedCategory = resolvedSearchParams.categoria || "";
 
-  const [posts, categories] = await Promise.all([
-    db.post.findMany({
-      where: {
-        status: "PUBLISHED",
-        ...(selectedCategory ? { category: { slug: selectedCategory } } : {}),
-        ...(query
-          ? {
-              OR: [
-                { title: { contains: query, mode: "insensitive" } },
-                { excerpt: { contains: query, mode: "insensitive" } },
-              ],
-            }
-          : {}),
-      },
-      orderBy: {
-        publishedAt: "desc",
-      },
-      include: {
-        category: true,
-      },
-    }),
-    db.category.findMany({
-      orderBy: { name: "asc" },
-    }),
-  ]);
+  let posts: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    excerpt: string | null;
+    coverImageUrl: string | null;
+    publishedAt: Date | null;
+    category: { id: string; name: string; slug: string };
+  }> = [];
+  let categories: Array<{ id: string; name: string; slug: string }> = [];
+
+  try {
+    const [fetchedPosts, fetchedCategories] = await Promise.all([
+      db.post.findMany({
+        where: {
+          status: "PUBLISHED",
+          ...(selectedCategory ? { category: { slug: selectedCategory } } : {}),
+          ...(query
+            ? {
+                OR: [
+                  { title: { contains: query, mode: "insensitive" } },
+                  { excerpt: { contains: query, mode: "insensitive" } },
+                ],
+              }
+            : {}),
+        },
+        orderBy: {
+          publishedAt: "desc",
+        },
+        include: {
+          category: true,
+        },
+      }),
+      db.category.findMany({
+        orderBy: { name: "asc" },
+      }),
+    ]);
+    posts = fetchedPosts;
+    categories = fetchedCategories;
+  } catch (error) {
+    console.warn("Aviso: banco de dados inacessível em /blog. Renderizando visualização segura.", error);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
