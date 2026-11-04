@@ -64,23 +64,28 @@ export default async function HomePage() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl reveal-on-scroll">
-            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-sm font-bold mb-8 tracking-wider uppercase border border-primary/20 shadow-xs">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold mb-8 tracking-wider uppercase border border-primary/20 shadow-xs">
               <span className="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              Deep Tech Amazônica
+              CIÊNCIA BRASILEIRA. POSSIBILIDADES SEM FRONTEIRAS.
             </span>
             <h1 className="text-5xl md:text-7xl font-heading text-primary tracking-tight mb-8 leading-[1.1]">
-              <span className="font-light block mb-2">Nanotecnologia que nasce na floresta</span>
-              <span className="font-bold text-secondary">e regenera a pele.</span>
+              <span className="font-light block mb-2">O futuro do cuidado começa</span>
+              <span className="inline-block whitespace-nowrap">
+                <span className="font-light">em uma </span>
+                <span className="font-bold text-secondary">nova escala.</span>
+              </span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/75 mb-10 leading-relaxed font-light max-w-3xl">
-              A BioSpin combina nanotecnologia de ponta com bioativos da Amazônia para criar nanofibras regenerativas, biomateriais médicos e cosméticos de alta performance. Com ciência validada e impacto positivo para comunidades extrativistas.
+              Engenharia de nanofibras e biomateriais bioativos para explorar novas possibilidades em regeneração tecidual.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="text-base px-8 h-14" render={<Link href="/solucoes" />}>
-                Conheça nossas soluções
+              <Button size="lg" className="text-base px-8 h-14 rounded-full font-semibold group shadow-md" render={<Link href="/tecnologia" />}>
+                <span>Explore a plataforma</span>
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button size="lg" variant="outline" className="text-base px-8 h-14 border-foreground/10 hover:bg-foreground/5" render={<Link href="/contato" />}>
-                Fale com um especialista
+              <Button size="lg" variant="outline" className="text-base px-8 h-14 rounded-full border-foreground/15 hover:bg-foreground/5 font-semibold group" render={<Link href="/contato" />}>
+                <span>Conecte sua pesquisa à BioSpin</span>
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
           </div>
