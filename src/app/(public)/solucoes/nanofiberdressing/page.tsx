@@ -14,38 +14,47 @@ export default function NanofiberdressingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-primary text-primary-foreground">
-        <div className="absolute inset-0 z-0 opacity-20">
-           <Image
-              src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?w=1600&q=80"
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 min-h-[640px] md:min-h-[750px] flex items-center overflow-hidden bg-primary text-primary-foreground">
+        {/* Fundo em altura real com o azul institucional na esquerda, mantendo o curativo limpo à direita */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          <div
+            className="absolute inset-y-0 right-0 h-full w-auto aspect-[1672/941] opacity-50 lg:opacity-100"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 25%, black 52%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 25%, black 52%)",
+            }}
+          >
+            <Image
+              src="/bg-curativo.png"
               alt="Nanofiberdressing"
               fill
-              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1340px"
+              className="object-contain object-right"
               priority
-           />
-           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-transparent" />
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary from-0% via-primary/85 via-50% to-transparent to-85% lg:via-primary/75 lg:via-40% lg:to-transparent lg:to-65%" />
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-primary/75 to-transparent" />
         </div>
         
-        {/* Grid nanotecnológico e orbes orgânicos */}
+        {/* Grid nanotecnológico sutil */}
         <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-          <div className="absolute inset-0 bg-nanotech-grid-dark opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/25 rounded-full blur-[130px] opacity-70 animate-float-slow" />
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
+          <div className="absolute inset-0 bg-nanotech-grid-dark opacity-20 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-4xl reveal-on-scroll">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-bold mb-8 tracking-wider uppercase border border-white/20">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-xs sm:text-sm font-bold mb-6 tracking-wider uppercase border border-white/20">
               Nanofiberdressing · TRL 5
             </span>
-            <h1 className="text-5xl md:text-7xl font-heading tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading tracking-tight mb-6 leading-[1.1]">
               <span className="font-light block mb-2">Menos tempo de cicatrização.</span>
               <span className="font-bold">Mais qualidade de vida.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/80 leading-relaxed font-light max-w-3xl mb-10 border-l-4 border-secondary pl-6">
+            <p className="text-xl md:text-2xl text-primary-foreground/80 leading-relaxed font-light max-w-3xl mb-8 border-l-4 border-secondary pl-6">
               Nanofibras bioativas desenvolvidas para reduzir drasticamente o tempo de cicatrização de feridas crônicas.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button size="lg" variant="secondary" className="text-base px-8 h-14 rounded-full shadow-lg" render={<Link href="#contato" />}>
                 Solicitar demonstração
               </Button>
@@ -54,10 +63,10 @@ export default function NanofiberdressingPage() {
               </Button>
             </div>
             
-            <div className="flex flex-wrap gap-4 text-sm font-medium text-primary-foreground/70">
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Validação clínica em andamento</div>
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Bioativos sustentáveis</div>
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Tecnologia da Amazônia</div>
+            <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-medium text-primary-foreground/75">
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Validação clínica em andamento</div>
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Bioativos sustentáveis</div>
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Tecnologia da Amazônia</div>
             </div>
           </div>
         </div>

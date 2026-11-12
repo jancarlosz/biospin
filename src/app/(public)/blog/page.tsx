@@ -68,19 +68,19 @@ export default async function BlogPage({
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-28 overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative pt-32 pb-24 md:pt-40 md:pb-28 min-h-[640px] md:min-h-[750px] flex items-center overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
           <div className="absolute inset-0 bg-nanotech-grid-dark opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
           <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/25 rounded-full blur-[130px] opacity-70 animate-float-slow" />
           <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 reveal-on-scroll">
             <div className="max-w-3xl">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold mb-6 tracking-wider uppercase backdrop-blur-sm">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold mb-8 tracking-wider uppercase backdrop-blur-sm">
                 Ciência & Bioeconomia
               </span>
-              <h1 className="text-5xl md:text-7xl font-heading tracking-tight mb-6 leading-[1.1]">
+              <h1 className="text-5xl md:text-7xl font-heading tracking-tight mb-8 leading-[1.1]">
                 <span className="font-light block mb-2">Blog &</span>
                 <span className="font-bold">Pesquisa</span>
               </h1>

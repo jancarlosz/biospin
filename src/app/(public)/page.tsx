@@ -53,7 +53,7 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section com Grid Nanotecnológico e Orbes Orgânicos */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-background">
+      <section className="relative pt-32 pb-28 md:pt-40 md:pb-32 min-h-[640px] md:min-h-[782px] flex items-center overflow-hidden bg-background">
         <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
           {/* Grid de precisão nanotecnológica */}
           <div className="absolute inset-0 bg-nanotech-grid opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
@@ -61,8 +61,8 @@ export default async function HomePage() {
           <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[130px] opacity-70 animate-float-slow" />
           <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[110px] opacity-60 animate-float-reverse" />
         </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-4xl reveal-on-scroll">
             <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold mb-8 tracking-wider uppercase border border-primary/20 shadow-xs">
               <span className="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse" />
@@ -134,13 +134,13 @@ export default async function HomePage() {
               { src: "/logo-zoma.png", alt: "Zoma" },
             ].map((item, idx) => (
               <div key={idx} className="flex items-center shrink-0 cursor-default">
-                 {item.type === "text" ? (
-                   <span className="text-sm md:text-base font-bold text-primary uppercase tracking-[0.2em] px-4">{item.text}</span>
-                 ) : (
-                   <div className="relative h-12 w-28 md:h-14 md:w-36 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                     <Image src={item.src!} alt={item.alt!} fill className="object-contain" />
-                   </div>
-                 )}
+                {item.type === "text" ? (
+                  <span className="text-sm md:text-base font-bold text-primary uppercase tracking-[0.2em] px-4">{item.text}</span>
+                ) : (
+                  <div className="relative h-12 w-28 md:h-14 md:w-36 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    <Image src={item.src!} alt={item.alt!} fill className="object-contain" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -148,51 +148,51 @@ export default async function HomePage() {
 
         {/* Premiações e Destaques (Grid, Sem Carrossel) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 border-t border-foreground/5">
-           <h3 className="text-sm font-semibold text-foreground/50 uppercase tracking-widest text-center mb-10">Reconhecimentos & Premiações</h3>
-           
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              
-              {/* Card 1: PEGN */}
-              <div className="bg-[#f96901] rounded-[1.8rem] p-6 text-white flex flex-col justify-between items-center text-center overflow-hidden group shadow-md hover:shadow-xl transition-all h-64">
-                <div className="flex-1 flex flex-col items-center justify-center gap-2">
-                  <h4 className="font-bold text-sm opacity-90 uppercase tracking-wider mb-2">Destaque na Mídia</h4>
-                  <div className="relative h-16 w-32 md:h-20 md:w-40 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                    <Image src="/p-e-g-n.png" alt="Pequenas Empresas e Grandes Negócios" fill className="object-contain drop-shadow-md" />
-                  </div>
-                </div>
-                <p className="text-xs font-medium opacity-90 bg-white/20 px-4 py-1.5 rounded-full mt-2 backdrop-blur-sm">Edições Mai/Out 2026</p>
-              </div>
+          <h3 className="text-sm font-semibold text-foreground/50 uppercase tracking-widest text-center mb-10">Reconhecimentos & Premiações</h3>
 
-              {/* Card 2: Top 1000 Sebrae */}
-              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
-                <Image src="/Top 1000 Sebrae Startups_BioSpin.jpeg" alt="Top 1000 Sebrae Startups" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/20 to-transparent flex flex-col justify-end p-5">
-                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 1000 Startups</h4>
-                  <p className="text-white/70 text-xs font-medium whitespace-normal">Prêmio Sebrae Startups 2026</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {/* Card 1: PEGN */}
+            <div className="bg-[#f96901] rounded-[1.8rem] p-6 text-white flex flex-col justify-between items-center text-center overflow-hidden group shadow-md hover:shadow-xl transition-all h-64">
+              <div className="flex-1 flex flex-col items-center justify-center gap-2">
+                <h4 className="font-bold text-sm opacity-90 uppercase tracking-wider mb-2">Destaque na Mídia</h4>
+                <div className="relative h-16 w-32 md:h-20 md:w-40 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                  <Image src="/p-e-g-n.png" alt="Pequenas Empresas e Grandes Negócios" fill className="object-contain drop-shadow-md" />
                 </div>
               </div>
+              <p className="text-xs font-medium opacity-90 bg-white/20 px-4 py-1.5 rounded-full mt-2 backdrop-blur-sm">Edições Mai/Out 2026</p>
+            </div>
 
-              {/* Card 3: Hackathon SUS */}
-              <div className="relative h-64 bg-[#031d49] rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
-                <Image src="/Hackathon Sus.png" alt="Finalista Hackathon SUS" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031d49]/90 via-[#031d49]/20 to-transparent flex flex-col justify-end p-5">
-                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Finalista Hackathon SUS</h4>
-                  <p className="text-white/70 text-xs font-medium whitespace-normal">Inovação Aberta em Saúde Pública</p>
-                </div>
+            {/* Card 2: Top 1000 Sebrae */}
+            <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
+              <Image src="/Top 1000 Sebrae Startups_BioSpin.jpeg" alt="Top 1000 Sebrae Startups" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/20 to-transparent flex flex-col justify-end p-5">
+                <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 1000 Startups</h4>
+                <p className="text-white/70 text-xs font-medium whitespace-normal">Prêmio Sebrae Startups 2026</p>
               </div>
+            </div>
 
-              {/* Card 4: Jaraqui Valley */}
-              <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center p-8">
-                <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-105">
-                  <Image src="/jaraqui.png" alt="Top 3 Jaraqui Valley" fill className="object-contain" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/10 to-transparent flex flex-col justify-end p-5">
-                  <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 3 Startups</h4>
-                  <p className="text-white/70 text-xs font-medium whitespace-normal">Jaraqui Valley</p>
-                </div>
+            {/* Card 3: Hackathon SUS */}
+            <div className="relative h-64 bg-[#031d49] rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group">
+              <Image src="/Hackathon Sus.png" alt="Finalista Hackathon SUS" fill className="object-contain transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#031d49]/90 via-[#031d49]/20 to-transparent flex flex-col justify-end p-5">
+                <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Finalista Hackathon SUS</h4>
+                <p className="text-white/70 text-xs font-medium whitespace-normal">Inovação Aberta em Saúde Pública</p>
               </div>
+            </div>
 
-           </div>
+            {/* Card 4: Jaraqui Valley */}
+            <div className="relative h-64 bg-background rounded-[1.8rem] overflow-hidden border border-foreground/5 shadow-md group bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center p-8">
+              <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-105">
+                <Image src="/jaraqui.png" alt="Top 3 Jaraqui Valley" fill className="object-contain" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a2f]/90 via-[#0a1a2f]/10 to-transparent flex flex-col justify-end p-5">
+                <h4 className="text-white font-bold text-lg mb-0.5 whitespace-normal leading-tight">Top 3 Startups</h4>
+                <p className="text-white/70 text-xs font-medium whitespace-normal">Jaraqui Valley</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -205,7 +205,7 @@ export default async function HomePage() {
                 <span className="font-light">Nossas</span> <span className="font-bold text-secondary">Soluções</span>
               </h2>
               <p className="text-xl text-foreground/60 font-light">
-                Três frentes de inovação nascidas da mesma plataforma tecnológica.
+                Diversas frentes de inovação nascidas da mesma plataforma tecnológica.
               </p>
             </div>
             <Button variant="ghost" className="hidden md:flex text-primary hover:text-primary hover:bg-primary/5 font-semibold group" render={<Link href="/solucoes" />}>
@@ -248,19 +248,19 @@ export default async function HomePage() {
                           <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
                             {solution.name}
                           </h3>
-                        <p className="text-foreground/60 leading-relaxed font-light line-clamp-3 text-base mb-4 flex-1">
-                          {solution.summary}
-                        </p>
-                        <span className="text-primary font-medium inline-flex items-center text-sm group-hover:underline mt-auto">
-                          Conhecer solução <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </Link>
-                  </SpotlightCard>
-                </div>
-              );
-            })
-          ) : (
+                          <p className="text-foreground/60 leading-relaxed font-light line-clamp-3 text-base mb-4 flex-1">
+                            {solution.summary}
+                          </p>
+                          <span className="text-primary font-medium inline-flex items-center text-sm group-hover:underline mt-auto">
+                            Conhecer solução <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </span>
+                        </div>
+                      </Link>
+                    </SpotlightCard>
+                  </div>
+                );
+              })
+            ) : (
               <>
                 {/* Card 1 — Nanofiberdressing (PROJECT-SPEC 3.3) */}
                 <div className="reveal-on-scroll">
@@ -297,7 +297,7 @@ export default async function HomePage() {
               </>
             )}
           </div>
-          
+
           <div className="mt-10 md:hidden">
             <Button variant="outline" className="w-full h-14 rounded-full border-foreground/10 text-foreground" render={<Link href="/solucoes" />}>
               Ver todas as soluções
@@ -309,9 +309,9 @@ export default async function HomePage() {
       {/* Para quem é a BioSpin */}
       <section className="py-32 bg-primary text-primary-foreground rounded-[3rem] mx-4 sm:mx-6 lg:mx-8 mb-24 overflow-hidden relative reveal-on-scroll">
         <div className="absolute inset-0 z-0 opacity-10">
-           <svg className="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M0,0 C30,40 70,60 100,0 L100,100 L0,100 Z" fill="currentColor" />
-           </svg>
+          <svg className="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0,0 C30,40 70,60 100,0 L100,100 L0,100 Z" fill="currentColor" />
+          </svg>
         </div>
         {/* Glow sutil de fundo */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-secondary/20 rounded-full blur-[120px] pointer-events-none" />
@@ -322,7 +322,7 @@ export default async function HomePage() {
               <span className="font-light">Para quem é a</span> <span className="font-bold">BioSpin</span>
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="reveal-on-scroll reveal-delay-100">
               <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.12)" className="h-full bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all hover:bg-white/10 flex flex-col">
@@ -338,7 +338,7 @@ export default async function HomePage() {
                 </Link>
               </SpotlightCard>
             </div>
-            
+
             <div className="reveal-on-scroll reveal-delay-200">
               <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.12)" className="h-full bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all hover:bg-white/10 flex flex-col">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md">
@@ -353,7 +353,7 @@ export default async function HomePage() {
                 </Link>
               </SpotlightCard>
             </div>
-            
+
             <div className="reveal-on-scroll reveal-delay-300">
               <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.12)" className="h-full bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all hover:bg-white/10 flex flex-col">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md">
@@ -380,7 +380,7 @@ export default async function HomePage() {
               <span className="font-light">Por que</span> <span className="font-bold text-secondary">BioSpin</span>
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="reveal-on-scroll reveal-delay-100">
               <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
@@ -388,14 +388,14 @@ export default async function HomePage() {
                 <p className="text-foreground font-semibold text-lg leading-snug">Bioativos exclusivos da biodiversidade amazônica</p>
               </SpotlightCard>
             </div>
-            
+
             <div className="reveal-on-scroll reveal-delay-200">
               <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
                 <Microchip className="h-10 w-10 text-secondary mb-6" />
                 <p className="text-foreground font-semibold text-lg leading-snug">Nanotecnologia própria de encapsulação e liberação controlada</p>
               </SpotlightCard>
             </div>
-            
+
             <div className="reveal-on-scroll reveal-delay-300">
               <SpotlightCard className="h-full bg-white p-8 rounded-[2rem] border border-foreground/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
                 <ShieldCheck className="h-10 w-10 text-secondary mb-6" />
@@ -475,7 +475,7 @@ export default async function HomePage() {
               <p className="text-foreground/50 col-span-3">Nenhum artigo publicado no momento.</p>
             )}
           </div>
-          
+
           <div className="mt-12 md:hidden">
             <Button variant="outline" className="w-full h-14 rounded-full border-foreground/10 text-foreground" render={<Link href="/blog" />}>
               Ler o blog

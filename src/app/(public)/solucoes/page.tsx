@@ -57,20 +57,34 @@ export default async function SolucoesPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-primary text-primary-foreground">
-        <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-          <div className="absolute inset-0 bg-nanotech-grid-dark opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/25 rounded-full blur-[130px] opacity-70 animate-float-slow" />
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
+      <section className="relative pt-32 pb-24 md:pt-40 md:pb-28 min-h-[640px] md:min-h-[750px] flex items-center overflow-hidden bg-primary text-primary-foreground">
+        {/* Imagem de fundo com degradê suave e maior visibilidade */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <Image
+            src="/bg-solucoes.jpg"
+            alt="Pesquisa e desenvolvimento em laboratório BioSpin"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center md:object-right opacity-30 md:opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/60 to-primary/25 md:via-primary/50 md:to-primary/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/75" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
+          <div className="absolute inset-0 bg-nanotech-grid-dark opacity-10 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
+          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[700px] h-[700px] bg-secondary/20 rounded-full blur-[130px] opacity-35 animate-float-slow" />
+          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-25 animate-float-reverse" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-3xl reveal-on-scroll">
             <h1 className="text-5xl md:text-7xl font-heading tracking-tight mb-8 leading-[1.1]">
               <span className="font-light block mb-2">Da floresta ao laboratório,</span>
               <span className="font-bold">do laboratório para o mercado.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/80 leading-relaxed font-light max-w-3xl">
-              Três frentes de inovação nascidas da mesma plataforma tecnológica de nanoencapsulação de bioativos amazônicos.
+            <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed font-light max-w-3xl">
+              Diversas frentes de inovação nascidas da mesma plataforma tecnológica de nanoencapsulação de bioativos amazônicos.
             </p>
           </div>
         </div>
@@ -79,7 +93,7 @@ export default async function SolucoesPage() {
       {/* Grid de Soluções */}
       <section className="py-24 md:py-32 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Âncoras do Projeto (Nanofiberdressing) */}
             {anchorSolutions.map((solution, idx) => (
@@ -112,7 +126,7 @@ export default async function SolucoesPage() {
                         </span>
                       </div>
                     </div>
-                    
+
                     <div className="px-4 pb-6 flex flex-col flex-1">
                       <h2 className="text-3xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
                         {solution.name}
@@ -163,7 +177,7 @@ export default async function SolucoesPage() {
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="px-4 pb-6 flex flex-col flex-1">
                       <h2 className="text-3xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
                         {solution.name}

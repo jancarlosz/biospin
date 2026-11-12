@@ -69,7 +69,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ===================== HERO SECTION ===================== */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 min-h-[640px] md:min-h-[750px] flex items-center overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 z-0 opacity-20">
           {solution.imageUrl ? (
             <>
@@ -94,11 +94,11 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[110px] opacity-50 animate-float-reverse" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-4xl reveal-on-scroll">
             <Button
               variant="link"
-              className="text-primary-foreground/60 hover:text-white mb-6 p-0 h-auto font-medium inline-flex items-center gap-2"
+              className="text-primary-foreground/60 hover:text-white mb-4 p-0 h-auto font-medium inline-flex items-center gap-2"
               render={<Link href="/solucoes" />}
             >
               <ArrowLeft className="h-4 w-4" /> Voltar para Soluções
@@ -107,30 +107,30 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             {/* Badge / Selo */}
             {solution.badge ? (
               <div>
-                <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-bold mb-8 tracking-wider uppercase border border-white/20">
+                <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-xs sm:text-sm font-bold mb-6 tracking-wider uppercase border border-white/20">
                   {solution.badge}
                 </span>
               </div>
             ) : solution.stage ? (
               <div>
-                <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-bold mb-8 tracking-wider uppercase border border-white/20">
+                <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white text-xs sm:text-sm font-bold mb-6 tracking-wider uppercase border border-white/20">
                   {solution.stage}
                 </span>
               </div>
             ) : null}
 
             {/* Main Title */}
-            <h1 className="text-5xl md:text-7xl font-heading tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading tracking-tight mb-6 leading-[1.1]">
               <span className="font-bold">{solution.name}</span>
             </h1>
 
             {/* Subtitle or Summary */}
-            <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed font-light max-w-3xl mb-10 border-l-4 border-secondary pl-6">
+            <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed font-light max-w-3xl mb-8 border-l-4 border-secondary pl-6">
               {solution.subtitle || solution.summary}
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-14">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button
                 size="lg"
                 variant="secondary"
@@ -153,14 +153,14 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             </div>
 
             {/* Trust Pills */}
-            <div className="flex flex-wrap gap-4 text-sm font-medium text-primary-foreground/70">
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+            <div className="flex flex-wrap gap-3 text-xs sm:text-sm font-medium text-primary-foreground/75">
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm">
                 <CheckCircle2 className="h-4 w-4 text-secondary" /> Nanotecnologia e Biopolímeros
               </div>
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm">
                 <CheckCircle2 className="h-4 w-4 text-secondary" /> Bioativos da Amazônia
               </div>
-              <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-2 backdrop-blur-sm">
+              <div className="flex items-center gap-2 bg-black/20 rounded-full px-3.5 py-1.5 backdrop-blur-sm">
                 <CheckCircle2 className="h-4 w-4 text-secondary" /> Sustentabilidade e Ciência
               </div>
             </div>
