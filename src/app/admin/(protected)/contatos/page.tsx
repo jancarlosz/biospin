@@ -1,14 +1,35 @@
 import { db } from "@/lib/db";
-import { ShieldCheck, Mail, Building2, Globe, User } from "lucide-react";
+import {
+  ShieldCheck,
+  Mail,
+  Building2,
+  Globe,
+  User,
+  AlertTriangle,
+} from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Contatos Recebidos | Painel BioSpin",
 };
 
+type ContactSubmissionRow = Awaited<
+  ReturnType<typeof db.contactSubmission.findMany>
+>[number];
+
 export default async function ContatosAdminPage() {
-  const submissions = await db.contactSubmission.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  let submissions: ContactSubmissionRow[] = [];
+  let loadError = false;
+
+  try {
+    submissions = await db.contactSubmission.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    console.error("Erro ao consultar contatos recebidos:", error);
+    loadError = true;
+  }
 
   const formatDate = (date: Date) =>
     new Intl.DateTimeFormat("pt-BR", {
@@ -27,11 +48,25 @@ export default async function ContatosAdminPage() {
         </h1>
         <p className="text-slate-600 mt-1">
           Formulários enviados pelo site. Total:{" "}
-          <strong>{submissions.length}</strong>
+          <strong>{loadError ? "—" : submissions.length}</strong>
         </p>
       </div>
 
-      {submissions.length === 0 ? (
+      {loadError ? (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-amber-900 flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="space-y-1 text-sm">
+            <p className="font-semibold">
+              Não foi possível carregar os contatos neste ambiente.
+            </p>
+            <p className="text-amber-800/90">
+              Verifique se as migrações pendentes do Prisma foram aplicadas no
+              banco de dados de produção para criar a tabela de submissões de
+              contato.
+            </p>
+          </div>
+        </div>
+      ) : submissions.length === 0 ? (
         <div className="bg-white border border-slate-200 rounded-xl p-12 text-center text-slate-500">
           <Mail className="w-10 h-10 mx-auto mb-3 text-slate-300" />
           <p className="font-medium">Nenhum contato recebido ainda.</p>
@@ -143,18 +178,16 @@ export default async function ContatosAdminPage() {
             </table>
           </div>
 
-          {/* Message expandable detail rows */}
           <div className="border-t border-slate-100 p-4">
             <p className="text-xs text-slate-400">
               Clique no e-mail para abrir o cliente de e-mail.
-              Mensagens completas disponíveis no banco de dados.
             </p>
           </div>
         </div>
       )}
 
       {/* Messages section */}
-      {submissions.length > 0 && (
+      {!loadError && submissions.length > 0 && (
         <div className="space-y-3">
           <h2 className="text-lg font-bold text-slate-900">
             Mensagens Completas

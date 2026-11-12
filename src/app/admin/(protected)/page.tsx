@@ -1,24 +1,45 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { FileText, Sparkles, FolderTree, ArrowRight, PlusCircle, ExternalLink, Inbox } from "lucide-react";
+import {
+  FileText,
+  Sparkles,
+  FolderTree,
+  ArrowRight,
+  PlusCircle,
+  ExternalLink,
+  Inbox,
+  AlertTriangle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Dashboard | Painel BioSpin",
 };
 
 export default async function AdminDashboardPage() {
-  const [postsCount, solutionsCount, categoriesCount, contactsCount, recentPosts] = await Promise.all([
-    db.post.count(),
-    db.solution.count(),
-    db.category.count(),
-    db.contactSubmission.count(),
-    db.post.findMany({
-      take: 5,
-      orderBy: { createdAt: "desc" },
-      include: { category: true },
-    }),
-  ]);
+  const [postsCount, solutionsCount, categoriesCount, recentPosts] =
+    await Promise.all([
+      db.post.count(),
+      db.solution.count(),
+      db.category.count(),
+      db.post.findMany({
+        take: 5,
+        orderBy: { createdAt: "desc" },
+        include: { category: true },
+      }),
+    ]);
+
+  let contactsCount: number | null = null;
+  let contactsUnavailable = false;
+
+  try {
+    contactsCount = await db.contactSubmission.count();
+  } catch (error) {
+    console.error("Erro ao consultar contagem de contatos:", error);
+    contactsUnavailable = true;
+  }
 
   return (
     <div className="space-y-8">
@@ -28,6 +49,24 @@ export default async function AdminDashboardPage() {
           Bem-vindo ao painel de gestão de conteúdos e catálogo da BioSpin.
         </p>
       </div>
+
+      {contactsUnavailable && (
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">
+          <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold">
+              Tabela de contatos ainda não disponível neste banco de dados
+            </p>
+            <p className="text-amber-800/90 text-xs mt-0.5">
+              Aplique as migrações pendentes do Prisma no banco de produção para ativar a gravação e consulta de leads em{" "}
+              <Link href="/admin/contatos" className="underline font-medium">
+                Contatos Recebidos
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -102,8 +141,14 @@ export default async function AdminDashboardPage() {
             </div>
           </div>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-slate-900">{contactsCount}</span>
-            <p className="text-xs text-slate-500 mt-1">Leads e mensagens do site</p>
+            <span className="text-3xl font-bold text-slate-900">
+              {contactsCount !== null ? contactsCount : "—"}
+            </span>
+            <p className="text-xs text-slate-500 mt-1">
+              {contactsUnavailable
+                ? "Pendente de migração no banco"
+                : "Leads e mensagens do site"}
+            </p>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
             <Link

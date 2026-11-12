@@ -24,7 +24,7 @@ const techContactSchema = z.object({
   instituicao: z.string().min(2, "Informe sua instituição ou empresa"),
   interesse: z.string().min(2, "Selecione um assunto"),
   mensagem: z.string().min(20, "A mensagem deve ter pelo menos 20 caracteres"),
-  aceite: z.literal(true, {
+  aceite: z.boolean().refine((val) => val === true, {
     message: "Você deve concordar com os termos de privacidade para enviar a mensagem",
   }),
   bot_field: z.string().optional(),
@@ -42,6 +42,7 @@ export function TechContactForm() {
     formState: { errors },
     reset,
     setValue,
+    watch,
   } = useForm<TechContactFormData>({
     resolver: zodResolver(techContactSchema),
     defaultValues: {
@@ -50,7 +51,7 @@ export function TechContactForm() {
       instituicao: "",
       interesse: "",
       mensagem: "",
-      aceite: true,
+      aceite: false,
       bot_field: "",
     },
   });
@@ -77,7 +78,7 @@ export function TechContactForm() {
           interestType: data.interesse,
           message: data.mensagem,
           origin: "/tecnologia",
-          consentLGPD: true,
+          consentLGPD: data.aceite,
         }),
       });
 
@@ -94,11 +95,15 @@ export function TechContactForm() {
         instituicao: "",
         interesse: "",
         mensagem: "",
-        aceite: true,
+        aceite: false,
         bot_field: "",
       });
-    } catch (err: any) {
-      toast.error(err?.message || "Ocorreu um erro ao enviar sua mensagem. Tente novamente.");
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Ocorreu um erro ao enviar sua mensagem. Tente novamente.";
+      toast.error(msg);
     } finally {
       setIsLoading(false);
     }
@@ -221,7 +226,7 @@ export function TechContactForm() {
 
       <Button
         type="submit"
-        disabled={isLoading}
+        disabled={isLoading || !watch("aceite")}
         size="lg"
         className="w-full text-base h-14 rounded-full font-semibold shadow-md group"
       >

@@ -27,7 +27,7 @@ const contactSchema = z.object({
   subject: z.string().min(2, "Selecione um assunto"),
   message: z.string().min(10, "A mensagem deve ter pelo menos 10 caracteres"),
   requestQuote: z.boolean(),
-  consentLGPD: z.literal(true, {
+  consentLGPD: z.boolean().refine((val) => val === true, {
     message: "Você deve concordar com os termos de privacidade para enviar a mensagem",
   }),
   origin: z.string().optional(),
@@ -56,7 +56,7 @@ export function ContactForm() {
       subject: "",
       message: "",
       requestQuote: false,
-      consentLGPD: true,
+      consentLGPD: false,
       origin: "",
       bot_field: "",
     },
@@ -101,7 +101,7 @@ export function ContactForm() {
         subject: "",
         message: "",
         requestQuote: false,
-        consentLGPD: true,
+        consentLGPD: false,
         origin: window.location.pathname,
         bot_field: "",
       });
@@ -261,7 +261,7 @@ export function ContactForm() {
       <Button
         type="submit"
         className="w-full md:w-auto min-w-[220px] h-12 rounded-full text-base"
-        disabled={isLoading}
+        disabled={isLoading || !watch("consentLGPD")}
       >
         {isLoading ? (
           <>

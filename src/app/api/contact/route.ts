@@ -57,25 +57,29 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true });
     }
 
-    // Persist submission to DB
-    await db.contactSubmission.create({
-      data: {
-        name,
-        email,
-        phone: phone ?? null,
-        company: company ?? null,
-        institution: institution ?? null,
-        role: role ?? null,
-        segment: segment ?? null,
-        interestType: interestType ?? null,
-        subject,
-        message,
-        requestQuote: requestQuote ?? false,
-        origin: origin ?? null,
-        consentLGPD: true,
-        consentAt: new Date(),
-      },
-    });
+    // Persist submission to DB without blocking email delivery if migration is pending
+    try {
+      await db.contactSubmission.create({
+        data: {
+          name,
+          email,
+          phone: phone ?? null,
+          company: company ?? null,
+          institution: institution ?? null,
+          role: role ?? null,
+          segment: segment ?? null,
+          interestType: interestType ?? null,
+          subject,
+          message,
+          requestQuote: requestQuote ?? false,
+          origin: origin ?? null,
+          consentLGPD: true,
+          consentAt: new Date(),
+        },
+      });
+    } catch (dbError) {
+      console.error("Erro ao salvar submissão de contato no banco:", dbError);
+    }
 
     const recipientEmail =
       process.env.CONTACT_EMAIL_RECIPIENT || "contato@biospin.com.br";

@@ -27,7 +27,7 @@ const oncomatrixSchema = z.object({
   role: z.string().min(2, "Cargo ou especialidade é obrigatório"),
   interestType: z.string().min(2, "Selecione o tipo de interesse"),
   message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
-  consentLGPD: z.literal(true, {
+  consentLGPD: z.boolean().refine((val) => val === true, {
     message: "Você deve concordar com os termos de privacidade para enviar",
   }),
   bot_field: z.string().optional(),
@@ -55,7 +55,7 @@ export function OncomatrixForm() {
       role: "",
       interestType: "",
       message: "",
-      consentLGPD: true,
+      consentLGPD: false,
       bot_field: "",
     },
   });
@@ -79,6 +79,7 @@ export function OncomatrixForm() {
         interestType: data.interestType,
         subject: `Interesse em OncoMatrix - ${data.institution} (${data.interestType})`,
         message: data.message,
+        consentLGPD: data.consentLGPD,
         origin: "/solucoes/oncomatrix",
       };
 
@@ -105,7 +106,7 @@ export function OncomatrixForm() {
         role: "",
         interestType: "",
         message: "",
-        consentLGPD: true,
+        consentLGPD: false,
         bot_field: "",
       });
     } catch (error: unknown) {
@@ -266,7 +267,7 @@ export function OncomatrixForm() {
       <Button
         type="submit"
         className="w-full h-12 rounded-full text-base font-medium shadow-sm"
-        disabled={isLoading}
+        disabled={isLoading || !watch("consentLGPD")}
       >
         {isLoading ? (
           <>

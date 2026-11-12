@@ -27,7 +27,7 @@ const nanofiberSchema = z.object({
   company: z.string().min(2, "Nome da empresa ou hospital é obrigatório"),
   segment: z.string().min(2, "Selecione o segmento de atuação"),
   message: z.string().optional(),
-  consentLGPD: z.literal(true, {
+  consentLGPD: z.boolean().refine((val) => val === true, {
     message: "Você deve concordar com os termos de privacidade para enviar a solicitação",
   }),
   bot_field: z.string().optional(),
@@ -55,7 +55,7 @@ export function NanofiberdressingForm() {
       company: "",
       segment: "",
       message: "",
-      consentLGPD: true,
+      consentLGPD: false,
       bot_field: "",
     },
   });
@@ -99,7 +99,7 @@ export function NanofiberdressingForm() {
         company: "",
         segment: "",
         message: "",
-        consentLGPD: true,
+        consentLGPD: false,
         bot_field: "",
       });
     } catch (error: unknown) {
@@ -260,7 +260,7 @@ export function NanofiberdressingForm() {
       <Button
         type="submit"
         className="w-full h-12 rounded-full text-base font-medium shadow-sm"
-        disabled={isLoading}
+        disabled={isLoading || !watch("consentLGPD")}
       >
         {isLoading ? (
           <>
