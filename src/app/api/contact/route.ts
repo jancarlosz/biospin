@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { db } from "@/lib/db";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Nome deve ter no mínimo 2 caracteres"),
@@ -14,7 +15,9 @@ const contactSchema = z.object({
   subject: z.string().min(2, "Selecione um assunto"),
   message: z.string().min(10, "Mensagem deve ter no mínimo 10 caracteres"),
   requestQuote: z.boolean().default(false),
-  consentLGPD: z.boolean().default(true),
+  consentLGPD: z.literal(true, {
+    message: "O aceite dos termos de privacidade é obrigatório.",
+  }),
   origin: z.string().optional(),
   bot_field: z.string().optional(),
 });
@@ -49,10 +52,30 @@ export async function POST(req: Request) {
       bot_field,
     } = parsed.data;
 
-    // Honeypot check: silently succeed
+    // Honeypot check: silently succeed without saving
     if (bot_field) {
       return NextResponse.json({ success: true });
     }
+
+    // Persist submission to DB
+    await db.contactSubmission.create({
+      data: {
+        name,
+        email,
+        phone: phone ?? null,
+        company: company ?? null,
+        institution: institution ?? null,
+        role: role ?? null,
+        segment: segment ?? null,
+        interestType: interestType ?? null,
+        subject,
+        message,
+        requestQuote: requestQuote ?? false,
+        origin: origin ?? null,
+        consentLGPD: true,
+        consentAt: new Date(),
+      },
+    });
 
     const recipientEmail =
       process.env.CONTACT_EMAIL_RECIPIENT || "contato@biospin.com.br";
@@ -84,26 +107,12 @@ export async function POST(req: Request) {
       to: recipientEmail,
       replyTo: email,
       subject: `[Lead BioSpin] ${subject} - ${name}${company ? ` (${company})` : ""}`,
-      text: `Novo contato recebido pelo site BioSpin:
-
-Nome: ${name}
-E-mail: ${email}
-Telefone/WhatsApp: ${phone || "Não informado"}
-Empresa/Instituição: ${company || institution || "Não informada"}
-Cargo: ${role || "Não informado"}
-Segmento / Interesse: ${segment || interestType || "Não especificado"}
-Assunto/Serviço: ${subject}
-Solicita Orçamento: ${requestQuote ? "SIM" : "NÃO"}
-Origem do Lead (Página): ${origin || "Não identificada"}
-
-Mensagem:
-${message}
-`,
+      text: `Novo contato recebido pelo site BioSpin:\n\nNome: ${name}\nE-mail: ${email}\nTelefone/WhatsApp: ${phone || "Não informado"}\nEmpresa/Instituição: ${company || institution || "Não informada"}\nCargo: ${role || "Não informado"}\nSegmento / Interesse: ${segment || interestType || "Não especificado"}\nAssunto/Serviço: ${subject}\nSolicita Orçamento: ${requestQuote ? "SIM" : "NÃO"}\nOrigem do Lead (Página): ${origin || "Não identificada"}\n\nMensagem:\n${message}\n`,
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Erro no envio do e-mail de contato:", error);
+    console.error("Erro no envio do contato:", error);
     return NextResponse.json(
       { error: "Erro interno ao processar a mensagem." },
       { status: 500 }

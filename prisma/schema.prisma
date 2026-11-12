@@ -84,3 +84,24 @@ model Solution {
 
   @@index([status])
 }
+
+model ContactSubmission {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  company      String?
+  institution  String?
+  role         String?
+  segment      String?
+  interestType String?
+  subject      String
+  message      String
+  requestQuote Boolean  @default(false)
+  origin       String?
+  consentLGPD  Boolean  @default(false)
+  consentAt    DateTime @default(now())
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+}

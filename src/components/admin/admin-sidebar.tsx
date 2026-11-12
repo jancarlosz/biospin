@@ -12,6 +12,7 @@ import {
   LogOut,
   ExternalLink,
   ChevronRight,
+  Inbox,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/admin/solucoes", label: "Catálogo de Soluções", icon: Sparkles },
   { href: "/admin/posts", label: "Artigos & Notícias", icon: FileText },
   { href: "/admin/categorias", label: "Categorias", icon: FolderOpen },
+  { href: "/admin/contatos", label: "Contatos Recebidos", icon: Inbox },
 ];
 
 interface AdminSidebarProps {

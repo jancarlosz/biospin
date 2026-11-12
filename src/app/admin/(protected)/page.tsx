@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { FileText, Sparkles, FolderTree, ArrowRight, PlusCircle, ExternalLink } from "lucide-react";
+import { FileText, Sparkles, FolderTree, ArrowRight, PlusCircle, ExternalLink, Inbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
@@ -8,10 +8,11 @@ export const metadata = {
 };
 
 export default async function AdminDashboardPage() {
-  const [postsCount, solutionsCount, categoriesCount, recentPosts] = await Promise.all([
+  const [postsCount, solutionsCount, categoriesCount, contactsCount, recentPosts] = await Promise.all([
     db.post.count(),
     db.solution.count(),
     db.category.count(),
+    db.contactSubmission.count(),
     db.post.findMany({
       take: 5,
       orderBy: { createdAt: "desc" },
@@ -29,7 +30,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-slate-500">Total de Artigos</span>
@@ -89,6 +90,27 @@ export default async function AdminDashboardPage() {
               className="text-xs font-semibold text-slate-700 hover:text-primary flex items-center gap-1"
             >
               Organizar categorias <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-xs">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-slate-500">Contatos Recebidos</span>
+            <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+              <Inbox className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="mt-4">
+            <span className="text-3xl font-bold text-slate-900">{contactsCount}</span>
+            <p className="text-xs text-slate-500 mt-1">Leads e mensagens do site</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <Link
+              href="/admin/contatos"
+              className="text-xs font-semibold text-emerald-700 hover:text-emerald-900 flex items-center gap-1"
+            >
+              Ver contatos <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
