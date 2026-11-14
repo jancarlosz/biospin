@@ -82,7 +82,7 @@ export async function POST(req: Request) {
     }
 
     const recipientEmail =
-      process.env.CONTACT_EMAIL_RECIPIENT || "contato@biospin.com.br";
+      process.env.CONTACT_EMAIL_RECIPIENT || "biospininnovation@gmail.com";
 
     // Simulate if no real API key is configured
     if (!process.env.RESEND_API_KEY) {

@@ -62,8 +62,8 @@ export default function PrivacidadePage() {
           <h2>6. Contato com o Encarregado de Dados</h2>
           <p>
             Para exercer seus direitos ou esclarecer dúvidas sobre o tratamento de dados pessoais, entre em contato através do e-mail:{" "}
-            <a href="mailto:contato@biospin.com.br" className="text-primary font-medium">
-              contato@biospin.com.br
+            <a href="mailto:biospininnovation@gmail.com" className="text-primary font-medium">
+              biospininnovation@gmail.com
             </a>.
           </p>
         </div>

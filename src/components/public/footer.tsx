@@ -93,8 +93,8 @@ export function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white shrink-0">
                   <Mail className="h-4 w-4" />
                 </div>
-                <a href="mailto:contato@biospin.com.br" className="hover:text-white transition-colors">
-                  contato@biospin.com.br
+                <a href="mailto:biospininnovation@gmail.com" className="hover:text-white transition-colors">
+                  biospininnovation@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">

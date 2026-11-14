@@ -76,10 +76,10 @@ export default function ContatoPage() {
                   <div>
                     <h3 className="font-bold text-foreground text-base">E-mail Institucional</h3>
                     <a
-                      href="mailto:contato@biospin.com.br"
+                      href="mailto:biospininnovation@gmail.com"
                       className="text-primary hover:underline text-sm font-medium"
                     >
-                      contato@biospin.com.br
+                      biospininnovation@gmail.com
                     </a>
                   </div>
                 </div>

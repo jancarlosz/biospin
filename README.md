@@ -91,7 +91,7 @@ UPLOADTHING_APP_ID="seu_app_id"
 
 # Resend (E-mails)
 RESEND_API_KEY="re_sua_chave_resend"
-CONTACT_EMAIL_TO="contato@biospin.com.br"
+CONTACT_EMAIL_RECIPIENT="biospininnovation@gmail.com"
 ```
 
 ### 5. Executar Migrações e Seed do Banco
