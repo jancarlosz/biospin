@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Activity, Clock, ShieldCheck, Microchip, Play } from "lucide-react";
+import { CheckCircle2, Activity, ShieldCheck, Microchip } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SpotlightCard } from "@/components/public/spotlight-card";
 import { NanofiberdressingForm } from "@/components/public/nanofiberdressing-form";
@@ -231,10 +231,14 @@ export default function NanofiberdressingPage() {
             </h2>
             <p className="text-foreground/60 font-light text-lg">Entenda a ciência por trás do Nanofiberdressing e como ele atua na matriz da pele.</p>
           </div>
-          <div className="max-w-4xl mx-auto aspect-video bg-foreground/5 rounded-[2.5rem] flex items-center justify-center relative overflow-hidden group cursor-pointer border border-foreground/10 reveal-on-scroll">
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
-            <Play className="h-20 w-20 text-white z-20 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all drop-shadow-lg" />
-            <p className="absolute bottom-6 left-6 text-white font-medium z-20">Vídeo Institucional</p>
+          <div className="max-w-4xl mx-auto aspect-video bg-black rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-foreground/10 reveal-on-scroll">
+            <iframe
+              src="https://drive.google.com/file/d/10QyLVtO_mU6ixZtBDzyYZQ2MMXbVDybO/preview"
+              title="Vídeo Institucional Nanofiberdressing — BioSpin"
+              className="w-full h-full border-0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

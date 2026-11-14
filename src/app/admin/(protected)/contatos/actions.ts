@@ -23,3 +23,4 @@ export async function deleteContactSubmission(id: string) {
     return { error: "Não foi possível excluir o contato." };
   }
 }
+
