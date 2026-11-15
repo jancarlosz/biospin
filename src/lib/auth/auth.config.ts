@@ -48,6 +48,22 @@ export const authConfig: NextAuthConfig = {
     signIn: "/admin/login",
   },
   callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (session.user) {
+        if (token?.id) {
+          session.user.id = token.id as string;
+        } else if (token?.sub) {
+          session.user.id = token.sub;
+        }
+      }
+      return session;
+    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isAdminRoute =
