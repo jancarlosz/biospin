@@ -30,6 +30,8 @@ export async function createCategory(data: CategoryInput) {
     });
 
     revalidatePath("/admin/categorias");
+    revalidatePath("/blog");
+    revalidatePath("/");
     return { success: true, category };
   } catch (error) {
     console.error("Erro ao criar categoria:", error);
@@ -63,6 +65,8 @@ export async function updateCategory(id: string, data: CategoryInput) {
     });
 
     revalidatePath("/admin/categorias");
+    revalidatePath("/blog");
+    revalidatePath("/");
     return { success: true, category };
   } catch (error) {
     console.error("Erro ao atualizar categoria:", error);
@@ -91,6 +95,8 @@ export async function deleteCategory(id: string) {
     });
 
     revalidatePath("/admin/categorias");
+    revalidatePath("/blog");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error("Erro ao deletar categoria:", error);

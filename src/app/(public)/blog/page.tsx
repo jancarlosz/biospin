@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { SpotlightCard } from "@/components/public/spotlight-card";
 import { cn } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Blog BioSpin | Ciência e Bioeconomia Amazônica",
   description: "Novidades sobre nanotecnologia, bioativos amazônicos e inovação em saúde e cuidado.",

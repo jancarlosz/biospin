@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { SpotlightCard } from "@/components/public/spotlight-card";
 import { db } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Soluções BioSpin | Biomateriais e Cosméticos",
   description:

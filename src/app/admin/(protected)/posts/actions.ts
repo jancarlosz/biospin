@@ -37,6 +37,10 @@ export async function createPost(data: PostInput) {
     });
 
     revalidatePath("/admin/posts");
+    revalidatePath("/blog");
+    revalidatePath("/");
+    revalidatePath(`/blog/${post.slug}`);
+    revalidatePath("/sitemap.xml");
     return { success: true, post };
   } catch (error) {
     console.error("Erro ao criar post:", error);
@@ -69,17 +73,31 @@ export async function updatePost(id: string, data: PostInput) {
       return { error: "Post não encontrado." };
     }
 
-    const isPublishingNow = parsed.data.status === "PUBLISHED" && existingPost.status !== "PUBLISHED";
+    const isPublishing = parsed.data.status === "PUBLISHED";
+    let publishedAt = existingPost.publishedAt;
+    if (isPublishing && !publishedAt) {
+      publishedAt = new Date();
+    } else if (!isPublishing && existingPost.status === "PUBLISHED") {
+      // Se voltou para rascunho
+      publishedAt = null;
+    }
 
     const post = await db.post.update({
       where: { id },
       data: {
         ...parsed.data,
-        ...(isPublishingNow && { publishedAt: new Date() }),
+        publishedAt,
       },
     });
 
     revalidatePath("/admin/posts");
+    revalidatePath("/blog");
+    revalidatePath("/");
+    revalidatePath(`/blog/${existingPost.slug}`);
+    if (existingPost.slug !== post.slug) {
+      revalidatePath(`/blog/${post.slug}`);
+    }
+    revalidatePath("/sitemap.xml");
     return { success: true, post };
   } catch (error) {
     console.error("Erro ao atualizar post:", error);
@@ -113,6 +131,10 @@ export async function deletePost(id: string) {
     }
 
     revalidatePath("/admin/posts");
+    revalidatePath("/blog");
+    revalidatePath("/");
+    revalidatePath(`/blog/${post.slug}`);
+    revalidatePath("/sitemap.xml");
     return { success: true };
   } catch (error) {
     console.error("Erro ao deletar post:", error);

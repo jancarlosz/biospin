@@ -7,6 +7,9 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;

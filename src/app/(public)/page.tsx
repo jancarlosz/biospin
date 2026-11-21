@@ -7,6 +7,9 @@ import { SpotlightCard } from "@/components/public/spotlight-card";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "BioSpin | Nanotecnologia e Bioativos da Amazônia para Saúde e Beleza",
   description: "A BioSpin transforma bioativos amazônicos em nanotecnologia para saúde e beleza: curativos regenerativos, biomateriais médicos e cosméticos sustentáveis.",
@@ -39,7 +42,10 @@ export default async function HomePage() {
       }),
       db.post.findMany({
         where: { status: "PUBLISHED" },
-        orderBy: { publishedAt: "desc" },
+        orderBy: [
+          { publishedAt: "desc" },
+          { createdAt: "desc" },
+        ],
         take: 3,
         include: { category: true },
       }),
